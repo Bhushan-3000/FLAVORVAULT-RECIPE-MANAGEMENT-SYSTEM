@@ -8,7 +8,7 @@ Welcome to **FLAVORVAULT**, a versatile recipe management system built using Dja
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Usage](#usage)
-<!-- - [Contributing](#contributing) -->
+- [Contributing](#contributing)
 <!-- - [License](#license)
 - [Contact](#contact) -->
 
@@ -75,21 +75,34 @@ Run the Development Server
 
 bash
 python manage.py runserver
+
 The application will be available at http://127.0.0.1:8000.
 
-Usage
+
+## Usage
+
 After setting up the project, you can access FLAVORVAULT at http://127.0.0.1:8000.
 
 Register/Login: Create an account or log in to start using the system.
+
 Add Recipes: Use the form to add new recipes.
+
 Search & Filter: Use the search functionality to find recipes by ingredients or categories.
+
 Plan Meals: Use the meal planning feature to organize your meals and generate shopping lists.
+
 Admin Interface: Access the Django admin interface at http://127.0.0.1:8000/admin for managing users and recipes.
-Contributing
+
+## Contributing
+
 We welcome contributions to FLAVORVAULT! To contribute, please follow these steps:
 
 Fork the repository.
+
 Create a new branch (git checkout -b feature-branch).
+
 Make your changes and commit them (git commit -am 'Add new feature').
+
 Push to the branch (git push origin feature-branch).
+
 Open a pull request with a clear description of your changes.
