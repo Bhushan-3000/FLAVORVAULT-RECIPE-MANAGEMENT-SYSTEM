@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorVault</title>
+    
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link rel="icon" href="ASSETS/icons8-chef-85.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+    <style>
+  .browse-btn {
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.7em 2em;
+    border: 3px solid #399918;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+    color: #399918;
+    text-decoration: none;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+.browse-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #399918;
+  z-index: -1;
+}
+
+.browse-btn:hover, .browse-btn:focus {
+  color: white;
+}
+
+.browse-btn:hover:before, .browse-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.browse-btn:active {
+  transform: scale(0.9);
+}
+
+
+/* feature cards */
+
+.ft-card {
+  position: relative;
+  display: flex;
+  margin-right: 10px;
+  max-width: 400px;
+  padding: 22px 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 30px;
+  border: 2px solid #cccccc;
+  background: #D6EFD8;
+  transition: 1s all;
+  text-decoration: none;
+  transition: all .3s;
+  /* pointer-events: none; */
+  transform: scale(.9);
+}
+
+.ft-card:hover{
+  transform: scale(1);
+}
+
+.title {
+  color: #072713;
+  text-align: center;
+  font-size: 22px;
+  font-style: normal;
+  /* font-weight: 600; */
+  line-height: 35.196px;
+  transition: 0.4s all;
+
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: bolder;
+}
+.subtitle {
+  color: #7e8882;
+  text-align: center;
+  /* font-size: 14px; */
+  /* font-style: normal; */
+  /* font-weight: 400; */
+  line-height: 22px;
+  transition: 0.4s all;
+
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: 400; 
+  font-size: large;
+}
+.icon-circle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  /* background: #efefef; */
+  /* background: #e5f6eb; */
+background: #FEFDED;
+}
+.ft-card:hover {
+  background: #23c55e;
+  transition: 0.4s all;
+}
+.ft-card:hover .title,
+.ft-card:hover .subtitle {
+  color: #fff;
+  transition: 0.4s all;
+}
+
+
+/* ui card  */
+
+
+.ui-card-container {
+  width: 80%;
+  height: 450px;
+  position: relative;
+
+  background-image: linear-gradient( 109.6deg,  rgba(112,246,255,0.33) 11.2%, rgba(221,108,241,0.26) 42%, rgba(229,106,253,0.71) 71.5%, rgba(123,183,253,1) 100.2% );
+  border: 1px solid #efefef;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 30px 40px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+.ui-card {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.ui-card .front-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1)
+}
+
+.ui-card .front-content p span{
+  font-size: 45px;
+  font-weight: 700;
+  opacity: 1;
+  font-family: 'Montserrat', sans-serif;
+  /* background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100% );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1)
+}
+
+.ui-card .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+
+
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+
+  /* background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100% ); */
+  color: #000;
+  padding: 20px;
+  line-height: 1.5;
+  border-radius: 5px;
+  transform: translateY(97%);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.ui-card .content .heading {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.ui-card:hover .content {
+  transform: translateY(0);
+}
+
+.ui-card:hover .front-content {
+  transform: translateY(-30%);
+}
+
+.ui-card:hover .front-content p span{
+  opacity: 0;
+}
+
+
+/* button css  */
+
+
+.ui-button button {
+  padding: 17px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+}
+
+.ui-button button:hover {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+}
+
+.ui-button button:active {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+}
+
+
+
+
+/* feature caption  */
+
+#pop-container p{
+background-color: #85FFBD;
+background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+border-radius: 25px;
+padding: 10px;
+text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+font-family: 'Montserrat', sans-serif;
+transition: all .3s;
+}
+
+#pop-container p:hover{
+transform: scale(.9);  
+}
+    </style>
+</head>
+<body>
+  {% load static %}
+
+        <nav class="navbar .navbar-nav-scroll navbar fixed navbar-expand-lg bg-dark border-bottom border-body w-100 p-2" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">
+            <!-- <img src="ASSETS/icons8-chef-85.png" alt="Bootstrap" width="60" height="54"> -->
+            <span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+            <ul class="navbar-nav nav-underline">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#home" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Features" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#About" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Contact" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Contact Us</a>
+              </li>
+              <button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/login/">Login / Sign-Up</a></button>
+              <!-- <button type="button" class="btn btn-outline-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Login</button> -->
+              <!-- <button type="button" class="btn btn-dark" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-light" href="#">Sign-Up</a></button> -->
+            </ul>
+          </div>
+          
+          
+        
+        </div>
+      </nav>
+      <br>
+      <section id="home">
+<div class="container-md">
+
+
+        
+        <figure class="text-center">
+        
+            <blockquote class="blockquote">
+                <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bolder;">Your Culinary Canvas:</h1>
+                <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bolder;">Curate, Create, Celebrate</h1>
+            </blockquote>
+        
+            <figcaption class="blockquote-footer">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 22px; line-height: 1.5;">Welcome to <span style="font-weight: 600; color: #399918; font-weight: bold;">Flavor<span style="color: black; font-weight: bold;">Vault</span></span>  your culinary hub! 🍽️👨‍🍳<br> Your culinary treasure chest awaits. Dive into a world where recipes come alive, and your kitchen becomes a playground of flavors. Seamlessly organize, discover, and share your culinary masterpieces. From cherished family recipes to new gourmet adventures, FlavorVault is your go-to hub for all things delicious. Elevate your cooking game and unlock the secrets of the culinary world with us!
+
+                </p>  
+            </figcaption>
+            <br>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a href="/browse_recipes/" target="_self"><button type="button" class="browse-btn">🍴Browse Recipes!🔍</button></a>
+            </div>
+
+        </figure>  
+    
+</div>
+<br><br>
+<div class="container-fluid w-100" >
+  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <img src="{% static 'ASSETS/CHICKEN BIRYANI.png' %}" class="d-block" style="width: 350px;" alt="...">
+          </div>
+          <div class="col-auto">
+            
+            <img src="{% static 'ASSETS/butter chicken.png' %}" class="d-block" style="width: 350px;" alt="...">
+          </div>
+          <div class="col-auto">
+            <img src="{% static 'ASSETS/chole bhature.png' %}" class="d-block" style="width: 350px;" alt="...">
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            
+            <img src="{% static 'ASSETS/OMLETTE.png' %}" class="d-block" style="width: 350px;" alt="...">
+          </div>
+          <div class="col-auto">
+            
+            <img src="{% static 'ASSETS/italian noodle.png' %}" class="d-block" style="width: 350px;" alt="...">
+          </div>
+          <div class="col-auto">
+            
+            <img src="{% static 'ASSETS/palak paneer.png' %}" class="d-block" style="width: 350px;" alt="...">
+          </div>
+        </div>
+      </div>
+      <!-- Add more carousel items as needed -->
+      <div class="carousel-item">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            
+            <img src="{% static 'ASSETS/chocolate cakes.png' %}" class="d-block" style="width: 350px;" alt="...">
+          </div>
+          <div class="col-auto">
+            
+            <img src="{% static 'ASSETS/cupcakes.png' %}" class="d-block" style="width: 350px;" alt="...">
+          </div>
+          <div class="col-auto">
+            
+            <img src="{% static 'ASSETS/donuts.png' %}" class="d-block" style="width: 350px;" alt="...">
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+  
+</div>
+
+        </div>
+      </div>
+      
+</div>
+</section>     
+<br><br><br>
+<section id="Features" class="">
+
+<div class="container-md w-100">
+  <br>
+            <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bolder;" class="text-center">What You Can Do with <span style="font-weight: 600; color: #399918; font-weight: bold;">Flavor<span style="color: black; font-weight: bold;">Vault</span></span> ?</h1>   
+            <br><br>  <br>
+            <br>
+<div class="row row-cols-1 row-cols-md-3 g-5 justify-content-center">
+            <a class="ft-card shadow-lg" href="">
+              <div class="containers">
+                <div class="icon-circle">
+                  <img width="30" height="31" src="https://img.icons8.com/external-lylac-kerismaker/32/external-Organize-business-lylac-kerismaker.png" alt="external-Organize-business-lylac-kerismaker"/>
+
+                </div>
+                <div class="title mb-3">Recipe organization</div>
+                <div class="subtitle">
+                  You can Add, Update, Read and Delete your recipes with tags, folders, and search functionality.
+                </div>
+              </div>
+            </a>
+
+            <a class="ft-card shadow-lg" href="">
+              <div class="containers">
+                <div class="icon-circle">
+                  <img width="30" height="31" src="https://img.icons8.com/pulsar-color/48/fine-print.png" alt="fine-print"/>
+
+                </div>
+                <div class="title mb-3">Nutrition Analysis</div>
+                <div class="subtitle">
+                  Get detailed nutrition information for each recipe, including macronutrients and allergen alerts.
+                </div>
+              </div>
+            </a>
+
+            <a class="ft-card shadow-lg" href="">
+              <div class="containers">
+                <div class="icon-circle">
+                  <img width="30" height="31" src="https://img.icons8.com/color/48/timetable.png" alt="timetable"/>
+  
+                </div>
+                <div class="title mb-3">Meal Planning</div>
+                <div class="subtitle">
+                  Plan your meals for the week, generate grocery lists, and keep track of your cooking schedule.
+                </div>
+              </div>
+            </a>
+
+            <a class="ft-card shadow-lg" href="">
+              <div class="containers">
+                <div class="icon-circle">
+                  <img width="30" height="31" src="https://img.icons8.com/external-others-iconmarket/64/external-scale-user-experience-others-iconmarket.png" alt="external-scale-user-experience-others-iconmarket"/>
+  
+                </div>
+                <div class="title mb-3">Recipe Scaling</div>
+                <div class="subtitle">
+                  You can easily scale recipes up or down for different serving sizes, According to your needs and requirements.
+                </div>
+              </div>
+            </a>
+
+
+            <a class="ft-card shadow-lg" href="">
+              <div class="containers">
+                <div class="icon-circle">
+                  <img width="30" height="31" src="https://img.icons8.com/pulsar-color/48/paid.png" alt="Online Ingredients Shop"/>  
+  
+                </div>
+                <div class="title mb-3">Buy Ingredients</div>
+                <div class="subtitle">
+                  Shop fresh ingredients for any recipe directly from FlavorVault, easy and <br>hassle-free!
+                </div>
+              </div>
+            </a>
+
+            <a class="ft-card shadow-lg" href="">
+              <div class="containers">
+                <div class="icon-circle">
+                  <img width="30" height="31" src="https://img.icons8.com/pulsar-color/48/favorite-chat.png" alt="favorite-chat"/>
+                
+                </div>
+                <div class="title mb-3">Insights</div>
+                <div class="subtitle">
+                  Share your valuable insights on our recipes to help others cook with confidence and creativity.
+                </div>
+              </div>
+            </a>
+</div>
+
+<br><br><br><br>
+<div id="pop-container" class="container-fluid w-100  ">
+  <p class="shadow-lg">Experience the joy of cooking like never before with FlavorVault – where every recipe is a new adventure waiting to be discovered.</p>
+</div>
+
+
+
+              
+              
+</div>
+</div>
+</section>
+<br><br><br><br>
+
+
+<section id="About">
+
+    <div class="container-md text-center">
+        <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bolder;">About Us</h1>
+        <figcaption class="blockquote-footer" style="color: black;"> 
+        <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bolder;"><span style="font-weight: 600; color: #399918; font-weight: bold;">Flavor<span style="color: black; font-weight: bold;">Vault</span></span>: Recipe Management System</h1>
+        <br>
+
+        <p class="text-start" style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large;">
+        <span class="fw-bolder fs-4">🍽️ Streamlining Culinary Creativity</span>
+        <br>
+        <br>
+        Welcome to <span style="font-weight: 600; color: #399918; font-weight: bold;">Flavor<span style="color: black; font-weight: bold;">Vault</span></span>! We rise like phoenixes from the ashes of culinary chaos, transforming your kitchen into a symphony of efficiency. 
+        
+        At FlavorVault, we understand that cooking is more than just preparing food—it's a journey of creativity, tradition, and discovery. Our platform is designed for passionate home cooks and professional chefs alike, offering innovative tools to organize, customize, and share your culinary masterpieces.
+        <br><br>
+        What sets us apart? Our personalized approach to recipe management. With smart categorization, customizable meal plans, and an interactive grocery list feature, we tailor our services to fit your unique cooking style. Plus, our vibrant community of food lovers is always here to inspire and support you. <span class="fw-bolder">Here’s what we’re all about:</span>
+        <br><br>
+        <span class="fw-bold">Centralized Hub:</span> Ditch the paper piles! Our system provides a centralized recipe hub where chefs and kitchen managers can create, edit, and share recipes with ease. No more lost instructions or disorganized files.
+        <br><br>
+        <span class="fw-bold">Efficiency Unleashed:</span> Imagine faster menu creation, confident experimentation, and delighted customers. We slash prep time, optimize ingredient usage, and automate inventory management. Say goodbye to wasted resources!
+        <br><br>
+        <span class="fw-bold">Safety & Consistency:</span> Flawless recipe execution is our forte. We eliminate allergen mix-ups, ensuring customer trust with every plate. Consistent quality and transparency build your brand reputation.
+        <br><br>
+        </p>   
+        <span class="text-center fs-4" style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large;">
+        🌟 Join us on <span style="font-weight: 600; color: #399918; font-weight: bold;">Flavor<span style="color: black; font-weight: bold;">Vault</span></span> and take your cooking to the next level. Here, every recipe tells a story, and we can't wait to be part of yours.
+        <br><br>
+        
+        <figcaption class="blockquote-footer">
+        Happy Cooking, and Welcome to the Family ! 
+        </figcaption>   
+        
+        </span>
+        </figcaption>
+
+    </div>
+</section>
+<br><br><br>
+
+
+<!-- card  -->
+
+<section id="ui-card">
+<div class="container-fluid w-85 d-flex justify-content-center ">
+<div class="ui-card-container shadow-lg">
+  <div class="ui-card">
+  <div class="front-content">
+    <p><span style="font-weight: 600; color: #ff0060; font-weight: bold;">Flavor<span style="color: black; font-weight: bold;">Vault</span></span></p>
+  </div>
+  <div class="content">
+    <p class="heading">
+      Unlock the full potential of your culinary creations with FlavorVault—your ultimate hub for storing, organizing, and sharing treasured recipes. <br>
+      <div class="ui-button">
+        <a href="#"><button>Get Started</button></a>  
+      </div>
+
+    
+    </p>
+    
+  </div> 
+</div>
+</div>
+</div>
+<br><br><br>
+</section>
+
+
+<style>
+  .test-card{
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    width: 400px;
+    margin-right: 20px;
+    margin-left: 20px;
+    /* border: 1px solid #7e8882; */
+    border-radius: 20px;
+    background: #D6EFD8;
+    /* color: #399918; */
+    color: #000;
+
+    /* background: #fbc5d9; */
+    /* color: #FF0060; */
+    transform: scale(.9);
+    transition: all .3s;
+  }
+
+  .test-card:hover{
+    transform: scale(1);
+    .bxs-star{
+      transform: scale(1.15);
+    }
+  }
+
+  #profile-pic{
+    /* color: #FF0080; */
+    /* color: #758694; */
+    /* color: #80AF81; */
+    color: #399918;
+  }
+
+
+.bxs-star{
+  color: gold;
+  font-size: 25px;
+  transition: all .3s;
+}
+
+.upper-text{
+  margin-left: 15px;
+}
+
+.upper-text h5{
+  font-size: 22px;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.lower-text{
+  text-align: center;
+  padding-top: 8px;
+}
+
+.lower-text p{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+
+</style>
+
+
+
+<section id="Contact">
+
+    <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bolder;" class="text-center">- Heartfelt Feedback -</h1>   
+    <figcaption class="blockquote-footer text-center" style="color: black;">
+        <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bolder;" class="text-center"></h1>       
+    </figcaption>
+    <br>
+    <div class="container-xl">
+      <div class="row row-cols-1 row-cols-md-3 g-5 justify-content-center">
+
+        <div class="test-card shadow-lg p-3">
+          <div class="upper-ctn d-flex align-items-center">
+            <i class='bx bxs-user-circle' id="profile-pic"  style="font-size: 80px;"></i>
+              <div class="upper-text">
+                <h5>Soham Kuvalekar</h5>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+              </div>
+          </div>
+          <div class="lower-text">
+            <p>"FlavorVault has completely transformed my cooking! The unique spice blends add such depth and richness to my dishes. I can’t imagine my kitchen without it"</p>
+          </div>
+        </div>
+
+        
+        <div class="test-card shadow-lg p-3">
+          <div class="upper-ctn d-flex align-items-center">
+            <i class='bx bxs-user-circle' id="profile-pic" style="font-size: 80px;"></i>
+              <div class="upper-text">
+                <h5>Bhushan Kumbhar</h5>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+              </div>
+          </div>
+          <div class="lower-text">
+            <p>“As a food enthusiast, I love experimenting with new flavors. FlavorVault’s products are top-notch and have never disappointed. Highly recommend to anyone looking to elevate their culinary game.”</p>
+          </div>
+        </div>
+
+      
+        <div class="test-card shadow-lg p-3">
+          <div class="upper-ctn d-flex align-items-center">
+            <i class='bx bxs-user-circle' id="profile-pic" style="font-size: 80px;"></i>
+              <div class="upper-text">
+                <h5>Priya Sahay</h5>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+              </div>
+          </div>
+          <div class="lower-text">
+            <p>“I was skeptical at first, but FlavorVault’s seasonings are a game-changer. My family can’t get enough of the delicious meals I prepare now. Thank you, FlavorVault!”</p>
+          </div>
+        </div>
+
+      
+        <div class="test-card shadow-lg p-3">
+          <div class="upper-ctn d-flex align-items-center">
+            <i class='bx bxs-user-circle' id="profile-pic" style="font-size: 80px;"></i>
+              <div class="upper-text">
+                <h5>Anjali Mehta</h5>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+              </div>
+          </div>
+          <div class="lower-text">
+            <p>“The variety and quality of spices from FlavorVault are unmatched. It’s like having a gourmet chef’s pantry at my fingertips. Every meal is a new adventure!”</p>
+          </div>
+        </div>
+
+
+
+        <div class="test-card shadow-lg p-3">
+          <div class="upper-ctn d-flex align-items-center">
+            <i class='bx bxs-user-circle' id="profile-pic" style="font-size: 80px;"></i>
+              <div class="upper-text">
+                <h5>Sneha Rathod</h5>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+              </div>
+          </div>
+          <div class="lower-text">
+            <p>“FlavorVault has made cooking so much more enjoyable. The flavors are bold, fresh, and truly elevate every dish. I’m a customer for life!”</p>
+          </div>
+        </div>
+
+
+
+        <div class="test-card shadow-lg p-3">
+          <div class="upper-ctn d-flex align-items-center">
+            <i class='bx bxs-user-circle' id="profile-pic" style="font-size: 80px;"></i>
+              <div class="upper-text">
+                <h5>Neha Thakur</h5>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+              </div>
+          </div>
+          <div class="lower-text">
+            <p>“FlavorVault’s spices have brought a new level of excitement to my cooking. The blends are so well-crafted and versatile. My friends and family always ask for my secret ingredient!”</p>
+          </div>
+        </div>  
+
+
+
+
+
+
+
+
+
+
+      </div>  
+    </div>
+    <!-- <div class="container-md w-60 shadow-lg col-8  p-3" id="contact-form" style="font-family: 'Montserrat', sans-serif; font-weight: bolder;">
+        <form action="" >
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Full Name</label><br>
+                <input type="text" class="w-100" id="exampleFormControlInput1" placeholder="  Full Name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Contact Number</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Contact Number" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Say Hello!!</label>
+                <textarea class="w-100" id="exampleFormControlTextarea1" rows="3" style="resize: none;" placeholder="You are about to Send a message to FlavorVault..." required></textarea>
+            </div>
+
+            
+            <div class="d-grid gap-2 col-10 mx-auto">
+                <button type="submit" class="btn btn-outline-dark fst-italic">🔥Blast!</button>
+                <button type="submit" class="btn btn-dark fst-italic">🔥Fire off a Message!</button>
+            </div>
+        </form>
+        <br>
+    </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="container-md w-60 shadow-lg col-8  p-3" style="font-family: 'Montserrat', sans-serif; font-weight: bolder;">
+      <form action="" >
+          <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Full Name" required>
+          </div>
+
+          <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Contact Number</label>
+              <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Contact Number" required>
+          </div>
+          
+          <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
+          </div>
+          <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Say Hello!!</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;" placeholder="You are about to Send a message to FlavorVault..." required></textarea>
+          </div>
+
+          
+          <div class="d-grid gap-2 col-10 mx-auto">
+              <button type="submit" class="btn btn-outline-dark fst-italic">🔥Blast!</button>
+              <button type="submit" class="btn btn-outline-dark fst-italic">🔥Fire off a Message!</button>
+          </div>
+      </form>
+      <br>
+  </div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br>
+</section>
+<br>
+<style>
+
+#footer-icons i{
+  color: rgba(255, 255, 255, .4);
+}
+#footer-icons i:hover{
+  color: white;
+  }
+</style>
+    <footer class="container-fluid bg-dark text-white mw-auto text-center">
+        
+        <div class="container-md" style="line-height: 1; ">
+            <br>
+        <h5 style="font-family: 'Montserrat', sans-serif; font-weight: 600;" >
+            <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><span style="color: #399918; font-weight: 600;">Flavor<span style="color: white; font-weight: 600;">Vault</span></span>
+            </a>
+        </h5>
+        
+        <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: x-small; line-height: .1;">
+            <a class="link-offset-2 link-underline link-underline-opacity-0" href="#" style="color: white;">Privacy Policy | Terms & Conditions | Cookies Policy</a>
+        
+        <div class="container-md fs-4" id="footer-icons">
+            <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-instagram-line"></i></a>
+            <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-facebook-fill"></i></a>
+            <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-twitter-x-fill"></i></a>
+            <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-whatsapp-line"></i></a>
+            <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-pinterest-fill"></i></a>
+        </div>
+        </p>
+        <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: small; ">
+          <a class="link-offset-2 link-underline link-underline-opacity-0" href="#" style="color: white; ">© All rights reserved 2024 - FlavorVault Pvt. Ltd.</a><br><br>
+          <a class="link-offset-2 link-underline link-underline-opacity-0" href="#" style="color: white; ">
+            <span style="color: #399918; font-weight: 600;">Mail us at: flavorvault@gmail.com</span>  |  Call on: 1800X XXXXX</a>
+        </p>
+        <br>
+    </div>
+    </footer>
+</div>
+</body>
+</html>

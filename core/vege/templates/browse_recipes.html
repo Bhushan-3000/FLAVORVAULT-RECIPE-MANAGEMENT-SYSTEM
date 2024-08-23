@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Recipes</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    
+</head>
+<body>
+    {% load static %}
+
+        <nav class="navbar .navbar-nav-scroll navbar fixed navbar-expand-lg bg-dark border-bottom border-body w-100 p-2" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">
+            <!-- <img src="ASSETS/icons8-chef-85.png" alt="Bootstrap" width="60" height="54"> -->
+            <span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+            <ul class="navbar-nav nav-underline">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#home" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Features" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#About" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Contact" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Contact Us</a>
+              </li>
+              <button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/login/">Login / Sign-Up</a></button>
+              <!-- <button type="button" class="btn btn-outline-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Login</button> -->
+              <!-- <button type="button" class="btn btn-dark" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-light" href="#">Sign-Up</a></button> -->
+            </ul>
+          </div>
+          
+          
+        
+        </div>
+      </nav>
+      <br>
+      <br>
+      <br>
+
+<style>
+
+       
+
+</style>
+<div class="container mt-5">
+  <div class="row">
+      <div class="col-md-8 offset-md-2">
+          <div class="input-group">
+              <!-- Dropdown menu for search categories -->
+              <button id="dropdownMenuButton" class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Category
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#" data-category="all">All</a></li>
+                  <li><a class="dropdown-item" href="#" data-category="books">Books</a></li>
+                  <li><a class="dropdown-item" href="#" data-category="electronics">Electronics</a></li>
+                  <li><a class="dropdown-item" href="#" data-category="clothing">Clothing</a></li>
+              </ul>
+
+              <!-- Search input field -->
+              <input id="searchInput" type="text" class="form-control" placeholder="Search..." aria-label="Search">
+              
+              <!-- Search button -->
+              <button id="searchButton" class="btn btn-primary" type="button">Search</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS and dependencies (Popper.js) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      let selectedCategory = 'all'; // Default category
+
+      // Handle category selection
+      document.querySelectorAll('.dropdown-item').forEach(item => {
+          item.addEventListener('click', function(e) {
+              e.preventDefault();
+              selectedCategory = this.getAttribute('data-category');
+              document.getElementById('dropdownMenuButton').textContent = this.textContent;
+          });
+      });
+
+      // Handle search button click
+      document.getElementById('searchButton').addEventListener('click', function() {
+          const query = document.getElementById('searchInput').value;
+          alert(`Searching for "${query}" in "${selectedCategory}" category.`);
+          // You can replace the alert with an actual search function or form submission
+      });
+  });
+</script>
+
+<!-- <div class="container-md ">
+        <div class="dropdown-center d-flex justify-content-center" id="browse-dropdown">
+          <div class="btn-group dropdown" >
+          <button class="btn tn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Veg / Non-Veg
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Veg</a></li>
+            <li><a class="dropdown-item" href="#">Non-Veg</a></li>
+          </ul>
+          </div>
+          <div class="btn-group dropdown">
+          <button class="btn btn-secondary dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Category
+          </button>
+          <select class="dropdown-menu">
+              <option><a class="dropdown-item" href="#">Starters</a></option>
+              <li><a class="dropdown-item" href="#">Chinese</a></li> -->
+              <!-- <li><a class="dropdown-item" href="#">Main Course</a></li> -->
+              <!-- <li><a class="dropdown-item" href="#">Desserts</a></li> -->
+              <!-- <li><a class="dropdown-item" href="#">Action three</a></li>  -->
+            </ul> 
+          </div>
+        </div>
+
+  <br>
+
+
+
+      <div class="container-md ">
+        <div class="container-md shadow-lg p-4" style="width: 65%;">
+            <h1 class="text-center" style="font-family: 'Montserrat', sans-serif; font-size: 30ox; margin-bottom: 20px; font-weight: 700;">CHICKEN BIRYANI</h1>
+            <div class="container-md" style="display: flex; justify-content: center; align-items: center;">
+                <img src="{% static 'ASSETS/CHICKEN BIRYANI.png' %}" alt="" style="margin-bottom: 20px;" width="55%">
+            </div>
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">Non-veg | Main Course | Biryani</p>
+                <br>
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8;">Chicken Biryani is a highly aromatic, mouth-watering staple dish that needs no introduction. Because of its endless nuanced flavors, it is perhaps the most comforting meal of Indian cuisine that has been a part of community feasts, family gatherings, and almost every Indian household for ages.Packed with fragrant rice and juicy, tender chicken pieces, it’s a perfect one-pot dinner recipe that your whole family will love!</p>
+                <br>
+
+                <table class="table fs-5">
+                        
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Main Ingredient</td>
+                        <td>Boneless Chicken, Basmati Rice</td>
+                      </tr>
+                      <tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Serve</td>
+                            <td>4</td>
+                          </tr>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Cook Time</td>
+                        <td>16-20 mins</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td>Taste</td>
+                        <td>Spicy</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <br>
+            <div class="container-md text-left" style="font-family: 'Montserrat', sans-serif;">
+                <h3 style="font-weight: bolder;">Ingredients list for Chicken Biryani: </h3>
+                <br>
+                <li>600 grams Boneless chicken </li>
+                <li>1 1/2 cups Basmati rice </li>
+                <li>3 tablespoons Oil </li>
+                <li>1 inch stick Cinnamon </li>
+                <li>2 Bay leaves </li>
+                <li>5-6 Cloves </li>
+                <li>1 teaspoon Cumin seeds </li>
+                <li>3-4 Green cardamoms </li>
+                <li>2 medium Onions sliced</li>
+                <li>3 Green chillies slit</li>
+                <li>1/4 teaspoon Turmeric powder </li>
+                <li>2 medium Tomatoes chopped</li>
+                <li>to taste Salt </li>
+                <li>3/4 teaspoon Ginger Garlic paste </li>
+                <li>1/2 teaspoon Red chilli powder </li>
+                <li>1 cup Thick yogurt </li>
+                <li>3 medium Onions sliced and fried </li>
+                <li>1/2 teaspoon Garam masala powder </li>
+                <li>1 inch piece Ginger cut into thin strips</li>
+                <li>a few Fresh mint leaves torn</li>
+                <li>a few Fresh coriander leaves torn</li>
+                <li>1/2 cup Milk </li>
+                <li>a few drops Rose water </li>
+                <li>4 Eggs boiled and sliced</li>                
+                <br>
+
+                
+                <h3 style="font-weight: bolder;">Now Follow the Instructions:</h3>
+                <br>
+                <ol>
+                    <li>"Cut chicken in one inch pieces. Boil rice and set aside. Heat oil in a non-stick pan, add cinnamon, bay leaves, cloves, cumin seeds, green cardamoms and sauté for half a minute."</li>
+                    <br>
+
+                    <li>"Add sliced onions and sauté. Add slit green chillies and chicken cubes and continue to sauté. Add turmeric powder and mix. Add tomatoes and salt and mix. Add ginger-garlic paste, red chilli powder and yogurt. Mix well. "</li>
+                    <br>
+
+                    <li>"Add half the fried brown onions. Add the boiled rice on top. Sprinkle garam masala powder, ginger strips, mint leaves and coriander leaves. Sprinkle milk, rose water and remaining browned onions."</li>
+                    <br>
+
+                    <li>"Cover and cook on low heat for about ten minutes. Garnish with the egg slices and serve hot. "</li>
+                </ol>   
+                <br>
+
+                <h3 style="font-weight: bolder;">Nutritional Info:</h3> 
+                    <br>
+                    <table class="table fs-5">
+                        
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Calories</td>
+                            <td>2997</td>
+                          </tr>
+                          <tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Carbohydrates</td>
+                                <td>312.8</td>
+                              </tr>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Protein</td>
+                            <td>224.9</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>Fat</td>
+                            <td>94</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <br>
+                        <br>
+                      <form>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Comments: </label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Add your review" aria-describedby="emailHelp">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    <br>
+            </div>
+
+                
+        </div>    
+      </div>
+      <br><br>
+
+      <div class="container-md ">
+        <div class="container-md shadow-lg p-4" style="width: 65%;">
+            <h1 class="text-center" style="font-family: 'Montserrat', sans-serif; font-size: 30ox; margin-bottom: 20px; font-weight: 700;">PANEER TIKKA MASALA</h1>
+            <div class="container-md" style="display: flex; justify-content: center; align-items: center;">
+                <img src="{% static 'ASSETS/paneer tikka masala.jpg' %}" alt="" style="margin-bottom: 20px;" width="40%">
+            </div>
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">Veg | Main Course | Paneer</p>
+                <br>
+                <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8;">Paneer Tikka Masala is a popular North Indian dish featuring grilled paneer (Indian cottage cheese) marinated in spices and yogurt, then cooked in a rich, creamy tomato-based gravy. This vegetarian delight is known for its smoky, charred flavors and pairs perfectly with naan or rice</p>
+                <br>
+
+                <table class="table fs-5">
+                        
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Main Ingredient</td>
+                        <td>Paneer, <br>Yogurt, <br>Ginger-Garlic Paste, <br>Spices, <br>Tomatoes, Onions <br>Cream & Cashews, <br>Oil, <br>Butter</td>
+                      </tr>
+                      <tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Serve</td>
+                            <td>1</td>
+                          </tr>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Cook Time</td>
+                        <td>40-45 mins</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td>Taste</td>
+                        <td>Spicy</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <br>
+            <div class="container-md text-left" style="font-family: 'Montserrat', sans-serif;">
+                <h3 style="font-weight: bolder;">Ingredients list for Paneer Tikka Masala: </h3>
+                <br>
+                <li>1 Cup Bite-Size Paneer</li>
+                <li>1 Cup Plain Yogurt</li>
+                <li>1/2 Inch Fresh Ginger</li>
+                <li>3-4 Small Garlic Cloves</li>
+                <li>1 Medium Onion - roughly chopped</li>
+                <li>2 Small Tomatoes - roughly chopped</li>
+                <li>8-9 Raw Cashews</li>
+                <li>1 Tbsp Tomato Ketchup</li>
+                <li>2 Tbsp Cream or Sour Cream - you can add any</li>
+                <li>1/2 Tbsp Honey - you can use sugar or sweetener of any kind</li>
+                <li>4 Tbsp Olive Oil - or any light flavorless oil</li>
+                <li>1 Bay Leaf</li>
+                <li>3 Green Cardamoms - crushed into a fine powder</li>
+                <li>2 Cloves - crushed into fine powder</li>
+                <li>1/2 Tsp Turmeric Powder</li>
+                <li>1/2 Tsp Chili Powder</li>
+                <li>1 Tbsp Kasuri Methi</li>
+                <li>1/2 Tsp Garam Masala</li>
+                <li>Salt to taste</li>
+
+                <br>
+
+                
+                <h3 style="font-weight: bolder;">Now Follow the Instructions:</h3>
+                <br>
+                <ol>
+                    <li>"Add onion, tomato, ginger+garlic, cashews and make a smooth paste. <br>Heat 1 tbsp olive oil in a non-stick pan. Add cubed paneer in the pan and saute for a minute or till lightly golden.
+                      Remove from pan and keep aside."</li>
+                    <br>
+
+                    <li>"In the same pan, heat 3 tbsp of oil for a minute. <br>
+                      Add bay leaf, curry paste and saute for another minute (medium flame).
+                      Now add the turmeric, salt, chili powder, cardamom powder, clove powder and saute."</li>
+                    <br>
+
+                    <li>"Lower the flame, cover the pan and let this cook for 3-4 minutes (saute every minute)(This ensure the onions along with other ingredients are properly cooked). <br>
+                      Once the curry paste is cooked, add yogurt, tomato ketchup and saute.
+                      Let this simmer for 2 minutes over lower heat. (You'd see the gravy thickening up and imparting a pretty orange color)."</li>
+                      <br>
+
+                      <li>"Now, add cream, kasuri methi, garam masala, 1/4 cup water and saute. <br>
+                        Finally, add paneer and mix everything."</li>
+                      <br>
+
+                      <li>"Let this simmer on medium heat for 2-3 minutes and then turn off the heat.
+                        Transfer to a serving bowl and decorate with whisked yogurt, kasuri methi, and ginger.
+                        Serve hot with choice of side"</li>
+                      <br>
+                </ol>   
+                <br>
+
+                <h3 style="font-weight: bolder;">Nutritional Info:</h3> 
+                    <br>
+                    <table class="table fs-5">
+                        
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Calories</td>
+                            <td>275kcal</td>
+                          </tr>
+                          <tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Carbohydrates</td>
+                                <td>18g</td>
+                              </tr>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Protein</td>
+                            <td>15g</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>Fat</td>
+                            <td>20g</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <br>
+                        <br>
+                      <form>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Comments: </label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Add your review" aria-describedby="emailHelp">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    <br>
+            </div>
+
+                
+        </div>
+        <br><br>
+
+
+
+        <div class="container-md ">
+          <div class="container-md shadow-lg p-4" style="width: 65%;">
+              <h1 class="text-center" style="font-family: 'Montserrat', sans-serif; font-size: 30ox; margin-bottom: 20px; font-weight: 700;">KETO BROWNIE</h1>
+              <div class="container-md" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="{% static 'ASSETS/keto brownie.png' %}" alt="" style="margin-bottom: 20px;" width="55%">
+              </div>
+                  <p style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">Non-veg | Dessert | Brownie</p>
+                  <br>
+                  <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8;">These keto brownies are super moist, fudgy, perfectly rich, and chocolatey. Make the world’s best brownie recipe and enjoy an incredibly sugar-free dessert with only 1g net carb per serving, ready in less than 30 minutes!</p>
+                  <br>
+  
+                  <table class="table fs-5">
+                          
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Main Ingredient</td>
+                          <td>Almond flour, <br>Cocoa powder, <br>Erythritol, <br>Baking powder, <br>Butter, <br>Dark chocolate, <br>Eggs, <br>Walnuts</td>
+                        </tr>
+                        <tr>
+                          <tr>
+                              <th scope="row">2</th>
+                              <td>Serve</td>
+                              <td>4</td>
+                            </tr>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td>Cook Time</td>
+                          <td>40-45 mins</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">4</th>
+                          <td>Taste</td>
+                          <td>Sweet</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br>
+              <div class="container-md text-left" style="font-family: 'Montserrat', sans-serif;">
+                  <h3 style="font-weight: bolder;">Ingredients list for Keto Brownie </h3>
+                  <br>
+                  <li>1 cup almond flour </li>
+                  <li>¼ cup cocoa powder </li>
+                  <li>¼ cup erythritol </li>
+                  <li>½ teaspoon baking powder </li>
+                  <li>1¼ cups butter</li>
+                  <li>50 grams dark chocolate (90%), chopped + for sprinkling</li>
+                  <li>3 eggs</li>
+                  <li>2 tablespoons roughly chopped walnuts + for sprinkling</li>
+                  <br>
+  
+                  
+                  <h3 style="font-weight: bolder;">Now Follow the Instructions:</h3>
+                  <br>
+                  <ol>
+                      <li>"2 tablespoons roughly chopped walnuts + for sprinkling"</li>
+                      <br>
+  
+                      <li>"ACombine almond flour, cocoa powder, erythritol and baking powder in a large bowl."</li>
+                      <br>
+  
+                      <li>"Take butter and chocolate in another bowl and melt them in the microwave. "</li>
+                      <br>
+  
+                      <li>"Break the eggs into another large bowl and beat with an electric beater till light and fluffy. Add melted chocolate and butter mixture to it and whisk again."</li>
+                      <br>
+  
+                      <li>Add almond flour mixture and whisk till well combined. Add walnuts and mix. </li>
+                      <br>
+  
+                      <li>Transfer the batter into a greased and lined 8 inch square mould and spread it evenly. Sprinkle walnut and chocolate on top, place the mould in the preheated oven and bake for 35-40 minutes. </li>
+                      <br>
+                      <li>Arrange on a serving platter and serve.</li>
+                      <br>
+                  </ol>   
+                  <br>
+  
+                  <h3 style="font-weight: bolder;">Nutritional Info:</h3> 
+                      <br>
+                      <table class="table fs-5">
+                          
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>Calories</td>
+                              <td>204</td>
+                            </tr>
+                            <tr>
+                              <tr>
+                                  <th scope="row">2</th>
+                                  <td>Carbohydrates</td>
+                                  <td>305</td>
+                                </tr>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>Protein</td>
+                              <td>450</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">4</th>
+                              <td>Fat</td>
+                              <td>18</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <br>
+                          <br>
+                        <form>
+                          <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Comments: </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Add your review" aria-describedby="emailHelp">
+                          </div>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                      <br>
+              </div>
+  
+                  
+          </div>
+          <br><br>
+</body>
+</html>
