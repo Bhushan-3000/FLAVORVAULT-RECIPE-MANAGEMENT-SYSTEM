@@ -2,6 +2,7 @@ from urllib import request
 from django.shortcuts import render, redirect
 from .models import *
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -86,6 +87,10 @@ def browseRecipe(request):
     }
     return render(request, "Browse.html",context)
 
+    referer = request.META.get('HTTP_REFERER')
+    if referer:
+        return HttpResponseRedirect(referer)
+    return HttpResponseRedirect('/')
 
 
 

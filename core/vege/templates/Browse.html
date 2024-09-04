@@ -131,18 +131,18 @@
             <div class="container-md w-100 d-flex justify-content-center" id="searchbar">
                 <!-- <input type="search" name="put" placeholder="Search Recipes..." /> -->
                 <!-- <button id="search" type="submit">Search</button> -->
-                <select class="form-select-md" aria-label="Default select example" style="border-radius: 8px;">
-                  <option selected>Select Category</option>
-                  <option value="1">Veg</option>
-                  <option value="2">Non-Veg</option>
-                  <option value="3">Desserts</option>
-                </select>
+                <!-- <select class="form-select-md p-3" aria-label="Default select example" style="border-radius: 8px; background-color: #399918; color: white;">
+                  <option selected style="background-color: white; color: #000;">Select Category</option>
+                  <option value="1" name="cname" style="background-color: white; color: #000;">Veg</option>
+                  <option value="2" name="cname" style="background-color: white; color: #000;">Non-Veg</option>
+                  <option value="3" name="cname" style="background-color: white; color: #000;">Desserts</option>
+                </select> -->
                 <input name="put" type="search" class="form-control" placeholder="Search Recipes...">
                 <button type="submit" class="add-recipe-btn" id="search">Browse</button>
             </div>
         </div>
     </form>
-
+<br>
     
     
     <div class="container-md ">
@@ -152,19 +152,51 @@
             <div class="container-md" style="display: flex; justify-content: center; align-items: center;">
                 <img src="{{browse.img.url}}" alt="" style="margin-bottom: 20px;" width="55%">
             </div>
-            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8;">{{browse.category}}</p>
+            
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic">{{browse.category}}</p>
             <br>
-            <p style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">{{browse.description}}</p>
+            
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{browse.description}}</p>
+            <br><br>
+
+            <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic">Serves : {{browse.serve}}</h2>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;"></p>
+            <!-- <br> -->
+
+            <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic">Cook Time : {{browse.cooktime}}</h2>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;"></p>
+            <!-- <br> -->
+            
+            <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic">Taste : {{browse.taste}}</h2>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;"></p>
             <br>
-            <h2>Ingredients</h2>
-            <p style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">{{browse.ingredients}}</p>
+
+            <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic"> Ingredients</h2>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{browse.ingredients}}</p>
             <br>
-            <h2>Instructions</h2>
-            <p style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">{{browse.instructions}}</p>
+            
+            <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic">Instructions</h2>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{browse.instruction1}}</p>
             <br>
-            <h2>Nutritional Info</h2>
-            <p style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">{{browse.nutritional_info}}</p>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{browse.instruction2}}</p>
             <br>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{browse.instruction3}}</p>
+            <br>
+
+            <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">Nutritional Info</h2>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">Calories : {{browse.calories}}</p>
+            
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">Carbohydrates : {{browse.carbohydrates}}</p>
+            
+            
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">Protein : {{browse.protein}}</p>
+            
+            
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">Fats : {{browse.fats}}</p>
+            <br>
+
+            <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">Allergic Info</h2>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{browse.allergic_info}}</p>
         </div>
         <br><br><br>
         {% endfor %}
