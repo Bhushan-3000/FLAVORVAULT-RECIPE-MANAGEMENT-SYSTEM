@@ -9,10 +9,16 @@ class Recipe(models.Model):
     recipe_image = models.ImageField(upload_to="recipe")
 
 
+class BrowseRecipe(models.Model):
+    recipe_name= models.CharField(max_length=200)
+    img = models.ImageField(upload_to="browseRecipes")
+    category = models.CharField(max_length=100)
+    description = models.CharField(max_length=400)
+    ingredients = models.CharField(max_length=800)
+    instructions = models.CharField(max_length=200)
+    nutritional_info = models.CharField(max_length=200)
     
-# class Contact(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-#     full_name = models.CharField(max_length=100)
-#     contact_number = models.CharField(max_length=100)
-#     email_add = models.EmailField(max_length=100)
-#     message_box = models.TextField()
+    def __str__(self) -> str:
+        return self.recipe_name
+
+    

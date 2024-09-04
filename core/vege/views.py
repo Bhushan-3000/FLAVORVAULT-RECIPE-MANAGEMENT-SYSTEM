@@ -39,8 +39,8 @@ def home(request):
 
 
 
-def browse_recipe(request):    
-    return render(request,'browse_recipes.html')
+# def browse_recipe(request):    
+#     return render(request,'browse_recipes.html')
 
 @login_required(login_url="/login/")
 def recipes(request): 
@@ -69,6 +69,27 @@ def recipes(request):
 
     context = {'Recipe' : queryset}
     return render(request, 'recipes.html', context)
+
+
+
+
+
+def browseRecipe(request):
+    if 'put' in request.GET:
+        put =request.GET['put']
+        browse =BrowseRecipe.objects.filter(recipe_name__icontains=put)
+    else :
+            browse= BrowseRecipe.objects.all()
+
+    context ={
+        'browse':browse
+    }
+    return render(request, "Browse.html",context)
+
+
+
+
+
 
 
 @login_required(login_url="/login/")

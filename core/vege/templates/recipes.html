@@ -12,6 +12,56 @@
         font-family: 'Montserrat', sans-serif;
         
     }
+
+    .add-recipe-btn {
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.7em 2em;
+    border: 3px solid #399918;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+    color: #399918;
+    text-decoration: none;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+.add-recipe-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #399918;
+  z-index: -1;
+}
+
+.add-recipe-btn:hover, .add-recipe-btn:focus {
+  color: white;
+}
+
+.add-recipe-btn:hover:before, .add-recipe-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.add-recipe-btn:active {
+  transform: scale(0.9);
+}
+
+
+
+
 </style>
 </head>
 <body>
@@ -80,8 +130,8 @@
               <label for="exampleInputEmail1" class="form-label">Recipe Image :</label>
               <input name="recipe_image" type="file" class="form-control" >
               </div>
-
-            <button type="submit" class="btn btn-dark">Add Recipe</button>
+              <button type="submit" class="add-recipe-btn">Add Recipe</button>
+            <!-- <button type="submit" class="btn btn-dark">Add Recipe</button> -->
         
         </form>
         <br><br>
@@ -94,7 +144,9 @@
                     <label for="exampleInputEmail1" class="form-label">Search for Recipes :</label>
                     <input name="search" type="text" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-dark">Browse</button>
+                <button type="submit" class="add-recipe-btn">Browse</button>
+
+                <!-- <button type="submit" class="btn btn-dark">Browse</button> -->
             </form>
             </div>
         </div>
