@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorVault</title>
+    
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link rel="icon" href="ASSETS/icons8-chef-85.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+  {% load static %}
+
+  <nav class="navbar .navbar-nav-scroll navbar fixed navbar-expand-lg bg-dark border-bottom border-body w-100 p-2" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">
+        <!-- <img src="ASSETS/icons8-chef-85.png" alt="Bootstrap" width="60" height="54"> -->
+        <span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+        <ul class="navbar-nav nav-underline">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#home" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Features" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#About" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Contact_Us/" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Contact Us</a>
+          </li>
+          <button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/login/">Login / Sign-Up</a></button>
+          <!-- <button type="button" class="btn btn-outline-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Login</button> -->
+          <!-- <button type="button" class="btn btn-dark" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-light" href="#">Sign-Up</a></button> -->
+        </ul>
+      </div>
+      
+      
+    
+    </div>
+  </nav>
+  <br>
+
+<div class="container-md w-60 shadow-lg col-8  p-3" style="font-family: 'Montserrat', sans-serif; font-weight: bolder;">
+    <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bold;" class="text-center">Connect With Us</h1>   
+    {% if messages %}
+    <div class="alert alert-success" role="alert">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+    </div>
+        {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">First Name</label>
+            <input type="text" name="firstname" class="form-control" id="exampleFormControlInput1" placeholder="First Name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Last Name</label>
+            <input type="text" name="lastname" class="form-control" id="exampleFormControlInput1" placeholder="Last Name" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Contact Number</label>
+            <input type="number" name="phoneno" class="form-control" id="exampleFormControlInput1" placeholder="Contact Number" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Say Hello!!</label>
+            <textarea class="form-control" name="msg" id="exampleFormControlTextarea1" rows="3" style="resize: none;" placeholder="You are about to Send a message to FlavorVault..." required></textarea>
+        </div>
+
+        
+        <div class="d-grid gap-2 col-10 mx-auto">
+            <!-- <button type="submit" class="btn btn-outline-dark fst-italic">🔥Blast!</button> -->
+            <button type="submit" class="btn btn-dark fst-italic">🔥Fire off a Message!</button>
+        </div>
+    </form>
+    <br>
+</div>
+<br>
+<br>
+<style>
+
+    #footer-icons i{
+      color: rgba(255, 255, 255, .4);
+    }
+    #footer-icons i:hover{
+      color: white;
+      }
+    </style>
+        <footer class="container-fluid bg-dark text-white mw-auto text-center">
+            
+            <div class="container-md" style="line-height: 1; ">
+                <br>
+            <h5 style="font-family: 'Montserrat', sans-serif; font-weight: 600;" >
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><span style="color: #399918; font-weight: 600;">Flavor<span style="color: white; font-weight: 600;">Vault</span></span>
+                </a>
+            </h5>
+            
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: x-small; line-height: .1;">
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#" style="color: white;">Privacy Policy | Terms & Conditions | Cookies Policy</a>
+            
+            <div class="container-md fs-4" id="footer-icons">
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-instagram-line"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-facebook-fill"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-twitter-x-fill"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-whatsapp-line"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-pinterest-fill"></i></a>
+            </div>
+            </p>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: small; ">
+              <a class="link-offset-2 link-underline link-underline-opacity-0" href="#" style="color: white; ">© All rights reserved 2024 - FlavorVault Pvt. Ltd.</a><br><br>
+              <a class="link-offset-2 link-underline link-underline-opacity-0" style="color: white; " href="mailto: flavorvault@gmail.com" >
+                <span style="color: #399918; font-weight: 600;">Mail us at: flavorvault@gmail.com</span>  |  Call on: 1800X XXXXX</a>
+            </p>
+            <br>
+        </div>
+        </footer>
+        
+</body>
+</html>        

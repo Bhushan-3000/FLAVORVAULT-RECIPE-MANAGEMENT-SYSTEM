@@ -1,6 +1,7 @@
 from urllib import request
 from django.shortcuts import render, redirect
 from .models import *
+from datetime import datetime
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -42,6 +43,28 @@ def home(request):
 
 # def browse_recipe(request):    
 #     return render(request,'browse_recipes.html')
+
+
+
+
+
+
+def contactUs(request):
+    if request.method =="POST":
+        firstname=request.POST.get('firstname')
+        lastname=request.POST.get('lastname')
+        email=request.POST.get('email')
+        phoneno=request.POST.get('phoneno')
+        msg=request.POST.get('msg')
+        contact = Contact(firstname=firstname,lastname=lastname,email=email,phoneno=phoneno,msg=msg,date=datetime.today())
+        contact.save()
+        messages.success(request, "Message Sent Sucessfully!")
+    # return redirect('contact-us')
+    return render(request, "contact-us.html")
+
+
+
+
 
 @login_required(login_url="/login/")
 def recipes(request): 

@@ -9,6 +9,22 @@ class Recipe(models.Model):
     recipe_image = models.ImageField(upload_to="recipe")
 
 
+
+class Contact(models.Model):
+    firstname= models.CharField(max_length=120)
+    lastname= models.CharField(max_length=120)
+    email= models.CharField(max_length=120)
+    phoneno = models.CharField(max_length=15)
+    msg = models.TextField()
+    date=models.DateField()
+    def __str__(self):
+        return self.firstname
+
+
+
+
+
+
 class BrowseRecipe(models.Model):
     recipe_name= models.CharField(max_length=500)
     img = models.ImageField(upload_to="browseRecipes")

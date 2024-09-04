@@ -27,6 +27,7 @@ urlpatterns = [
     path('home/', home),
     path('browse_recipes/', browseRecipe),
     path('recipes/', recipes),
+    path('Contact_Us/', contactUs),
     path('delete_recipe/<id>/',delete_recipe , name ="delete_recipe"),
     path('update_recipe/<id>/',update_recipe , name ="update_recipe"),
     path('success_page/', success_page, name="success_page"),
@@ -38,4 +39,9 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += staticfiles_urlpatterns()    
+urlpatterns += staticfiles_urlpatterns()  
+
+
+admin.site.site_header = "FLAVORVAULT ADMINISTRATION"
+admin.site.site_title = "FlavorVault Admin Postal"
+admin.site.index_title = "Welcome to FlavorVault Admin Portal"
