@@ -30,11 +30,11 @@ urlpatterns = [
     path('Contact_Us/', contactUs),
     path('delete_recipe/<id>/',delete_recipe , name ="delete_recipe"),
     path('update_recipe/<id>/',update_recipe , name ="update_recipe"),
-    path('success_page/', success_page, name="success_page"),
     path('login/', login_page, name="login_page"),
     path('logout/', logout_page, name="logout_page"),
     path('register/', register, name="register"),
     path('admin/', admin.site.urls),
+    path('feedback/', feedback_view, name='feedback'),
 ]
 
 if settings.DEBUG:

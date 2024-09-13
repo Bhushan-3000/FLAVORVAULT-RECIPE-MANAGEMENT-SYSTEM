@@ -47,3 +47,22 @@ class BrowseRecipe(models.Model):
         return self.recipe_name
 
     
+    
+class Feedback(models.Model):
+    FEEDBACK_TYPE_CHOICES = [
+        ('suggestion', 'Suggestion'),
+        ('issue', 'Problem/Issue'),
+        ('praise', 'Praise/Compliment'),
+        ('general', 'General Question'),
+    ]
+
+    subject = models.CharField(max_length=100)
+    feedback_type = models.CharField(max_length=10, choices=FEEDBACK_TYPE_CHOICES)
+    details = models.TextField()
+    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)])  # 1 to 5
+    recommend = models.BooleanField()
+    email = models.EmailField(blank=True, null=True)
+    additional_comments = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.subject} - {self.feedback_type}"

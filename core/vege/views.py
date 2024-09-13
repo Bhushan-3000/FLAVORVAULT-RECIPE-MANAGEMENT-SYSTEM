@@ -204,3 +204,34 @@ def register(request):
     
     
     return render(request, 'register.html')
+
+
+
+def feedback_view(request):
+    if request.method == 'POST':
+        subject = request.POST.get('subject')
+        feedback_type = request.POST.get('feedback_type')
+        details = request.POST.get('details')
+        rating = request.POST.get('rating')
+        recommend = request.POST.get('recommend')
+        email = request.POST.get('email')
+        additional_comments = request.POST.get('additional_comments')
+        
+        # Create a new Feedback instance
+        Feedback.objects.create(
+            subject=subject,
+            feedback_type=feedback_type,
+            details=details,
+            rating=rating,
+            recommend=recommend == 'true',  # Convert string to boolean
+            email=email,
+            additional_comments=additional_comments
+        )
+        
+        # Use Django's messages framework to display a success message
+        messages.info(request, "Thank you for your feedback!")
+        
+        # Redirect to the same page to show the message
+        return redirect('feedback')
+    
+    return render(request, 'feedback.html')
