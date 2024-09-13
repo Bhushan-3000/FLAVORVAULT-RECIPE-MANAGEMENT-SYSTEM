@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Meal Plan</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    
+    <style>
+
+html {
+        font-family: 'Montserrat', sans-serif;
+        
+    }
+    .meal_planner{
+        
+        height: 100vh;
+    }
+
+</style>
+</head>
+<body>
+    {% load static %}
+<section class="meal_planner">
+    <nav class="navbar .navbar-nav-scroll navbar fixed navbar-expand-lg bg-dark border-bottom border-body w-100 p-2" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">
+        <!-- <img src="ASSETS/icons8-chef-85.png" alt="Bootstrap" width="60" height="54"> -->
+        <span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+        <ul class="navbar-nav nav-underline">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#home" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Features" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#About" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Contact_Us/" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Contact Us</a>
+          </li>
+          <button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/login/">Login / Sign-Up</a></button>
+          <!-- <button type="button" class="btn btn-outline-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Login</button> -->
+          <!-- <button type="button" class="btn btn-dark" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-light" href="#">Sign-Up</a></button> -->
+        </ul>
+      </div>
+      
+      
+    
+    </div>
+  </nav>
+  <br>
+
+  <div class="container-sm mt-4">
+    <h1 class="mb-4 text-center" style="font-weight:bold;">Current Meal Plan</h1>
+
+    <a href="{% url 'meal_planner' %}" class="btn btn-secondary mb-3">Back to Planner</a>
+
+    <ul class="list-group">
+        {% for meal_plan in meal_plans %}
+            <li class="list-group-item">{{ meal_plan.day }}: {{ meal_plan.recipe.recipe_name }}</li>
+        {% empty %}
+            <li class="list-group-item">No meal plans available.</li>
+        {% endfor %}
+    </ul>
+</div>
+<br><br>
+</section>
+
+<style>
+
+    #footer-icons i{
+      color: rgba(255, 255, 255, .4);
+    }
+    #footer-icons i:hover{
+      color: white;
+      }
+    </style>
+        <footer class="container-fluid bg-dark text-white mw-auto text-center">
+            
+            <div class="container-md" style="line-height: 1; ">
+                <br>
+            <h5 style="font-family: 'Montserrat', sans-serif; font-weight: 600;" >
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><span style="color: #399918; font-weight: 600;">Flavor<span style="color: white; font-weight: 600;">Vault</span></span>
+                </a>
+            </h5>
+            
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: x-small; line-height: .1;">
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#" style="color: white;">Privacy Policy | Terms & Conditions | Cookies Policy</a>
+                
+                <div class="container-md fs-4" id="footer-icons">
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-instagram-line"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-facebook-fill"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-twitter-x-fill"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-whatsapp-line"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-pinterest-fill"></i></a>
+            </div>
+            </p>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: small; ">
+              <a class="link-offset-2 link-underline link-underline-opacity-0" href="#" style="color: white; ">© All rights reserved 2024 - FlavorVault Pvt. Ltd.</a><br><br>
+              <a class="link-offset-2 link-underline link-underline-opacity-0" style="color: white; " href="#" >
+                <span style="color: #399918; font-weight: 600;">Share a Feedback</span>  |  Call on: 1800X XXXXX</a>
+            </p>
+            <br>
+        </div>
+        </footer>
+</body>
+</html>
+
+
+

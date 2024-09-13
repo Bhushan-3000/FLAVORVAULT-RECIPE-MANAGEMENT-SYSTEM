@@ -26,7 +26,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('home/', home),
     path('browse_recipes/', browseRecipe),
-    path('recipes/', recipes),
+    path('recipes/', recipes, name ="recipes"),
     path('Contact_Us/', contactUs),
     path('delete_recipe/<id>/',delete_recipe , name ="delete_recipe"),
     path('update_recipe/<id>/',update_recipe , name ="update_recipe"),
@@ -35,6 +35,12 @@ urlpatterns = [
     path('register/', register, name="register"),
     path('admin/', admin.site.urls),
     path('feedback/', feedback_view, name='feedback'),
+    path('meal_planner/', meal_planner, name='meal_planner'),
+    path('meal_plan/', meal_plan_view, name='meal_plan'),
+    path('grocery_list/', grocery_list_view, name='grocery_list'),
+    path('view_grocery/', added_grocery_list, name='view_grocery'),
+    path('cooking_schedule/', add_cooking_schedule, name='cooking_schedule'),
+    path('view_cooking_schedule/', cooking_schedule_view, name='view_cooking_schedule'),
 ]
 
 if settings.DEBUG:

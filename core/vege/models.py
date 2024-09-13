@@ -7,6 +7,9 @@ class Recipe(models.Model):
     recipe_name = models.CharField(max_length=100)
     recipe_description = models.TextField()
     recipe_image = models.ImageField(upload_to="recipe")
+    def __str__(self) -> str:
+        return self.recipe_name
+
 
 
 
@@ -66,3 +69,37 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f"{self.subject} - {self.feedback_type}"
+    
+
+class MealPlan(models.Model):
+    DAY_CHOICES = [
+        ('Monday', 'Monday'),
+        ('Tuesday', 'Tuesday'),
+        ('Wednesday', 'Wednesday'),
+        ('Thursday', 'Thursday'),
+        ('Friday', 'Friday'),
+        ('Saturday', 'Saturday'),
+        ('Sunday', 'Sunday'),
+    ]
+
+    day = models.CharField(max_length=9, choices=DAY_CHOICES)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.day}: {self.recipe.recipe_name}"
+
+class GroceryItem(models.Model):
+    Item_name = models.CharField(max_length=255)
+    Quantity = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.Quantity} of {self.Item_name}"
+
+class CookingSchedule(models.Model):
+    meal_plan = models.OneToOneField(MealPlan, on_delete=models.CASCADE)
+    scheduled_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.meal_plan} at {self.scheduled_time}"
+    
+

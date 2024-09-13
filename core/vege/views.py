@@ -8,10 +8,37 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.utils.dateparse import parse_datetime
 
 
 
 # Create your views here.
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Login successful!")
+            return redirect('recipes')  
+        else:
+            messages.error(request, "Invalid username or password.")
+    return render(request, 'login.html')
+
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, "Logged out successfully!")
+    return redirect('login')  # Redirect to the login page or home
+
+
+
+
+
+
+
+
 def home(request):    
     return render(request,'INDEX2.html')
     # if request.method == "POST":
@@ -235,3 +262,104 @@ def feedback_view(request):
         return redirect('feedback')
     
     return render(request, 'feedback.html')
+
+@login_required(login_url="/login/")
+def meal_planner(request):
+    if request.method == 'POST':
+        recipe_name = request.POST.get('recipe_name')
+        day = request.POST.get('day')
+
+        if recipe_name and day:
+            # Create or get existing Recipe
+            recipe, created = Recipe.objects.get_or_create(recipe_name=recipe_name)
+
+            # Create or get existing MealPlan
+            meal_plan, created = MealPlan.objects.get_or_create(day=day, recipe=recipe)
+
+            if created:
+                messages.success(request, f'Recipe "{recipe_name}" added to "{day}" successfully!')
+            else:
+                messages.info(request, f'Recipe "{recipe_name}" is already planned for "{day}".')
+
+            # Redirect to avoid re-posting on refresh
+            return redirect('meal_planner')
+    
+    # Fetch all meal plans, grocery items, and cooking schedules to display
+    meal_plans = MealPlan.objects.all()
+    grocery_items = GroceryItem.objects.all()
+    cooking_schedules = CookingSchedule.objects.all()
+
+    return render(request, 'meal_planner.html', {
+        'meal_plans': meal_plans,
+        'grocery_items': grocery_items,
+        'cooking_schedules': cooking_schedules
+    })
+
+
+def meal_plan_view(request):
+    meal_plans = MealPlan.objects.all()
+    return render(request, 'meal_plan.html', {'meal_plans': meal_plans})
+
+
+
+
+@login_required(login_url="/login/")
+def grocery_list_view(request):
+    if request.method == 'POST':
+        Item_name = request.POST.get('Item_name')
+        Quantity = request.POST.get('Quantity')
+
+        GroceryItem.objects.create(
+            Item_name=Item_name,
+            Quantity=Quantity
+            )
+        
+        messages.info(request, "Grocery Item Added Successfully!")
+        
+        return redirect('grocery_list')
+    
+    return render(request, 'grocery_list.html')
+
+
+
+def added_grocery_list(request):
+    grocery_items = GroceryItem.objects.all()
+    return render(request, 'grocery_list_view.html', {'grocery_items': grocery_items})
+
+
+
+@login_required(login_url="/login/")
+def add_cooking_schedule(request):
+    if request.method == 'POST':
+        meal_plan_id = request.POST.get('meal_plan')
+        scheduled_time = request.POST.get('scheduled_time')
+        
+        if meal_plan_id and scheduled_time:
+            meal_plan = MealPlan.objects.get(id=meal_plan_id)
+            scheduled_time = parse_datetime(scheduled_time)
+            
+            CookingSchedule.objects.create(
+                meal_plan=meal_plan,
+                scheduled_time=scheduled_time
+            )
+            messages.info(request, "Scheduled Successfully!")
+
+            return redirect('cooking_schedule')
+    
+    meal_plans = MealPlan.objects.all()
+    return render(request, 'cooking_schedule.html', {'meal_plans': meal_plans})
+
+def cooking_schedule_view(request):
+    cooking_schedules = CookingSchedule.objects.all()  # Filter as needed
+    return render(request, 'cooking_schedule_view.html', {'cooking_schedules': cooking_schedules})
+
+
+
+
+
+
+
+# def cooking_schedule_view(request):
+#     cooking_schedules = CookingSchedule.objects.all()
+#     return render(request, 'cooking_schedule.html', {'cooking_schedules': cooking_schedules})
+
