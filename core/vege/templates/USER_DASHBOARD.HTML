@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlavorVault Dashboard</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+    body {
+      display: flex;
+    }
+    .nav-link {
+      color: #fff;
+      font-size: 18px;
+      padding: 15px;
+      transition: background-color 0.3s ease;
+    }
+    .nav-link:hover {
+      background-color: #f8f9fa;
+      color: black;
+      border-radius: 10px;
+    }
+    .nav-link.active {
+      background-color: #f7f7f7;
+      color: #000 !important;
+      border-radius: 10px;
+    }
+
+
+    .navbar-dark {
+      background-color: #f7f7f7;
+    }
+    .icon {
+      margin-right: 8px;
+    }
+    .nav-item {
+      margin-bottom: 10px;
+    }
+    .card {
+      width: 100%; /* Adjust the width of the card */
+      max-width: 400px; /* Set a maximum width for the card */
+      height: 250px; /* Set a fixed height for the card */
+      position: relative; /* Required for the card-img-overlay positioning */
+      text-decoration: none; /* Remove default link text decoration */
+      border-radius: 15px; /* Rounded corners for the card */
+      overflow: hidden; /* Ensure the image respects the border-radius */
+      border: none;
+    }
+    .card:hover{
+      .card-img-overlay{
+        background: rgba(0, 0, 0, 0);  
+        display: none;
+      }
+
+    }
+    .card-img {
+      height: 100%; /* Make sure the image covers the card height */
+      object-fit: cover; /* Ensure the image covers the area */
+    }
+    .card-img-overlay {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end; /* Align text at the bottom */
+      align-items: center; /* Center text horizontally */
+      padding: 15px; /* Adjust padding for overlay content */
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    }
+    .card-title, .card-text {
+      color: #fff; /* Text color for better readability on dark background */
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  {% load static %}
+  <!-- Vertical Nav Bar -->
+  <nav class="d-flex flex-column p-2 bg-dark border-end" data-bs-theme="dark" style="width: 300px; height: 100vh;">
+    <h2 class="text-center" style="font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</h2>
+    <hr style="color: #fff;">
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a href="#" class="nav-link active">
+          <i class="bi bi-house icon"></i> Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="bi bi-person-fill-gear icon"></i> Edit Profile
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="bi bi-journal icon"></i> My Recipes
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="bi bi-search icon"></i> Browse Recipes
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="bi bi-cart icon"></i> Shopping List
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="bi bi-calendar-day icon"></i> Meal Planner
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="bi bi-clock-history icon"></i> Cooking Schedule
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="bi bi-question-circle icon"></i> Help & Support
+        </a>
+      </li>
+    </ul>
+    <hr>
+    {% if not request.user.is.authenticated %}
+
+    <a href="/logout/" class="btn btn-light mt-auto">Log Out</a>
+    {% endif %}
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container-fluid p-4" style="flex-grow: 1;">
+    <div class="alert alert-success text-center p-1 mx-auto" role="alert">
+      <h2 style="font-weight: 800;">Welcome to FlavorVault Dashboard</h2>
+      <p class="text-dark">Manage your recipes, create meal plans, and more!</p>
+    </div>
+    <br>
+
+    <!-- Card Section with Images -->
+    <div class="row">
+      <!-- Card 1: My Recipes -->
+      <div class="col-md-4 mb-4 d-flex justify-content-center">
+        <a href="custom-page1.html" class="card text-bg-dark">
+          <img src="{% static 'ASSETS/CREATE.png' %}" class="card-img" alt="My Recipes Image">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Add Recipes</h5>
+            <p class="card-text">Create, Update, Delete Your Recipes.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Card 2: Meal Planner -->
+      <div class="col-md-4 mb-4 d-flex justify-content-center">
+        <a href="custom-page2.html" class="card text-bg-dark">
+          <img src="{% static 'ASSETS/MEAL PLANNER.png' %}" class="card-img" alt="Meal Planner Image">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Meal Planner</h5>
+            <p class="card-text">Plan your meals for the week.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Card 3: Shopping List -->
+      <div class="col-md-4 mb-4 d-flex justify-content-center">
+        <a href="custom-page3.html" class="card text-bg-dark">
+          <img src="{% static 'ASSETS/SHOPPING LIST.png' %}" class="card-img" alt="Shopping List Image">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Shopping List</h5>
+            <p class="card-text">Manage your shopping list.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Card 4: Cooking Schedule -->
+      <div class="col-md-4 mb-4 d-flex justify-content-center">
+        <a href="custom-page4.html" class="card text-bg-dark">
+          <img src="{% static 'ASSETS/COOKING SCHEDULE.png' %}" class="card-img" alt="Cooking Schedule Image">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Cooking Schedule</h5>
+            <p class="card-text">Schedule your cooking for the days.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Card 5: Favourite Recipes -->
+      <div class="col-md-4 mb-4 d-flex justify-content-center">
+        <a href="custom-page5.html" class="card text-bg-dark">
+          <img src="{% static 'ASSETS/FAVOURITE.png' %}" class="card-img" alt="Favourite Recipes Image">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Favourite Recipes</h5>
+            <p class="card-text">View your saved or favourite recipes.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Card 6: Feedback -->
+      <div class="col-md-4 mb-4 d-flex justify-content-center">
+        <a href="custom-page6.html" class="card text-bg-dark">
+          <img src="{% static 'ASSETS/FEEDBACK.png' %}" class="card-img" alt="Feedback Image">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Share Feedback</h5>
+            <p class="card-text">Help us improve continuously.</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+</body>
+</html>

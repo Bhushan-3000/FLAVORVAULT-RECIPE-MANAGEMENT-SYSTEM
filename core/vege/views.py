@@ -15,7 +15,9 @@ from django.utils.dateparse import parse_datetime
 # Create your views here.
 
 
-
+@login_required(login_url="/login/")
+def userDashboard(request):    
+    return render(request,'USER_DASHBOARD.HTML')
 
 
 
@@ -23,6 +25,29 @@ def home(request):
     return render(request,'INDEX2.html')
     
 
+
+def login_page(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if not User.objects.filter(username = username).exists():
+            messages.info(request, 'Invalid Username')
+            return redirect('/login/')
+        user = authenticate(username = username, password = password)
+        if user is None:
+            messages.info(request, 'Invalid Password')
+            return redirect('/login/')
+        else:
+            login(request, user) 
+            return redirect('/dashboard/') #after login which page to display
+
+    return render(request, 'login.html')
+    
+
+def logout_page(request):
+    logout(request)
+    return redirect('/login/')
 
 
 
@@ -128,29 +153,6 @@ def update_recipe(request, id):
     queryset = Recipe.objects.all()    
     return render(request, 'update_recipe.html', context)
 
-
-def login_page(request):
-    if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        if not User.objects.filter(username = username).exists():
-            messages.info(request, 'Invalid Username')
-            return redirect('/login/')
-        user = authenticate(username = username, password = password)
-        if user is None:
-            messages.info(request, 'Invalid Password')
-            return redirect('/login/')
-        else:
-            login(request, user) 
-            return redirect('/meal_planner/') #after login which page to display
-
-    return render(request, 'login.html')
-    
-
-def logout_page(request):
-    logout(request)
-    return redirect('/login/')
 
 
 
