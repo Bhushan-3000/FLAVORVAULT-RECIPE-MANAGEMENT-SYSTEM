@@ -50,8 +50,10 @@
       border-radius: 15px; /* Rounded corners for the card */
       overflow: hidden; /* Ensure the image respects the border-radius */
       border: none;
+      transition: all .4s;
     }
     .card:hover{
+      transform: scale(.9);
       .card-img-overlay{
         background: rgba(0, 0, 0, 0);  
         display: none;
@@ -104,22 +106,22 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="/browse_recipes/" class="nav-link">
           <i class="bi bi-search icon"></i> Browse Recipes
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="/view_grocery/" class="nav-link">
           <i class="bi bi-cart icon"></i> Shopping List
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
-          <i class="bi bi-calendar-day icon"></i> Meal Planner
+        <a href="/meal_plan/" class="nav-link">
+          <i class="bi bi-calendar-day icon"></i> Meal Plan
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="/view_cooking_schedule/" class="nav-link">
           <i class="bi bi-clock-history icon"></i> Cooking Schedule
         </a>
       </li>
@@ -148,7 +150,7 @@
     <div class="row">
       <!-- Card 1: My Recipes -->
       <div class="col-md-4 mb-4 d-flex justify-content-center">
-        <a href="custom-page1.html" class="card text-bg-dark">
+        <a href="/recipes/" class="card text-bg-dark">
           <img src="{% static 'ASSETS/CREATE.png' %}" class="card-img" alt="My Recipes Image">
           <div class="card-img-overlay">
             <h5 class="card-title">Add Recipes</h5>
@@ -159,7 +161,7 @@
 
       <!-- Card 2: Meal Planner -->
       <div class="col-md-4 mb-4 d-flex justify-content-center">
-        <a href="custom-page2.html" class="card text-bg-dark">
+        <a href="/meal_planner/" class="card text-bg-dark">
           <img src="{% static 'ASSETS/MEAL PLANNER.png' %}" class="card-img" alt="Meal Planner Image">
           <div class="card-img-overlay">
             <h5 class="card-title">Meal Planner</h5>
@@ -170,7 +172,7 @@
 
       <!-- Card 3: Shopping List -->
       <div class="col-md-4 mb-4 d-flex justify-content-center">
-        <a href="custom-page3.html" class="card text-bg-dark">
+        <a href="/grocery_list/" class="card text-bg-dark">
           <img src="{% static 'ASSETS/SHOPPING LIST.png' %}" class="card-img" alt="Shopping List Image">
           <div class="card-img-overlay">
             <h5 class="card-title">Shopping List</h5>
@@ -181,7 +183,7 @@
 
       <!-- Card 4: Cooking Schedule -->
       <div class="col-md-4 mb-4 d-flex justify-content-center">
-        <a href="custom-page4.html" class="card text-bg-dark">
+        <a href="/cooking_schedule/" class="card text-bg-dark">
           <img src="{% static 'ASSETS/COOKING SCHEDULE.png' %}" class="card-img" alt="Cooking Schedule Image">
           <div class="card-img-overlay">
             <h5 class="card-title">Cooking Schedule</h5>
@@ -192,7 +194,7 @@
 
       <!-- Card 5: Favourite Recipes -->
       <div class="col-md-4 mb-4 d-flex justify-content-center">
-        <a href="custom-page5.html" class="card text-bg-dark">
+        <a href="#" class="card text-bg-dark">
           <img src="{% static 'ASSETS/FAVOURITE.png' %}" class="card-img" alt="Favourite Recipes Image">
           <div class="card-img-overlay">
             <h5 class="card-title">Favourite Recipes</h5>
@@ -203,7 +205,7 @@
 
       <!-- Card 6: Feedback -->
       <div class="col-md-4 mb-4 d-flex justify-content-center">
-        <a href="custom-page6.html" class="card text-bg-dark">
+        <a href="/feedback/" class="card text-bg-dark">
           <img src="{% static 'ASSETS/FEEDBACK.png' %}" class="card-img" alt="Feedback Image">
           <div class="card-img-overlay">
             <h5 class="card-title">Share Feedback</h5>
