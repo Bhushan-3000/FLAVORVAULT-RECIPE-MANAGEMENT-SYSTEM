@@ -13,26 +13,6 @@ from django.utils.dateparse import parse_datetime
 
 
 # Create your views here.
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, "Login successful!")
-            return redirect('recipes')  
-        else:
-            messages.error(request, "Invalid username or password.")
-    return render(request, 'login.html')
-
-
-def logout_view(request):
-    logout(request)
-    messages.success(request, "Logged out successfully!")
-    return redirect('login')  # Redirect to the login page or home
-
-
 
 
 
@@ -41,35 +21,7 @@ def logout_view(request):
 
 def home(request):    
     return render(request,'INDEX2.html')
-    # if request.method == "POST":
-
-    #     data = request.POST
-        
-    #     full_name = data.get('full_name')
-    #     contact_number = data.get('contact_number')
-    #     email_add = data.get('email_add')
-    #     message_box = data.get('message_box')
-        
-    #     print(full_name)
-    #     print(contact_number)
-    #     print(email_add)
-    #     print(message_box)
-
-    #     Contact.objects.create(
-    #        full_name = full_name, 
-    #        contact_number = contact_number,
-    #        email_add = email_add,
-    #        message_box = message_box,
-
-    #     )
-    #     return redirect("/home/")    
-    # queryset = Contact.objects.all()
-
-
-
-
-# def browse_recipe(request):    
-#     return render(request,'browse_recipes.html')
+    
 
 
 
@@ -191,7 +143,7 @@ def login_page(request):
             return redirect('/login/')
         else:
             login(request, user) 
-            return redirect('/recipes/')
+            return redirect('/meal_planner/') #after login which page to display
 
     return render(request, 'login.html')
     
