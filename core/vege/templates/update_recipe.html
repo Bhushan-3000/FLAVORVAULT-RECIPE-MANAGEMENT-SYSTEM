@@ -66,31 +66,117 @@
 </style>
 </head>
 <body>
+
+  <!-- Display Messages -->
+  {% if messages %}
+  <div class="container-fluid w-75">
+    {% for message in messages %}
+        <div class="text-center alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+  {% endif %}
+  
     <div class="container mt-5">
 
-        <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-        <h2 class="text-center" style="font-weight: 800;">Update Recipe</h2>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Recipe Name :</label>
-              <input name="recipe_name" type="text" value="{{Recipe.recipe_name}}" class="form-control" required>
-        
-            </div>
-        
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Recipe Description :</label>
-              <textarea name="recipe_description" class="form-control" required>{{Recipe.recipe_description}}</textarea>
-            </div>
-        
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Recipe Image :</label>
-              <input name="recipe_image" type="file" class="form-control" value="{{Recipe.recipe_image}}">
-              </div>
-              <button type="submit" class="update-recipe-btn">Update Recipe</button>
+        <form class="col-9 mx-auto card p-4 shadow-lg" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2 class="text-center mb-3" style="font-size: 30px; font-weight: 700;">Update Your Recipe</h2>
 
-            <!-- <button type="submit" class="btn btn-dark">Update Recipe</button> -->
-        
-        </form>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="recipe_name" class="form-label">Recipe Name :</label>
+            <input name="recipe_name" type="text" class="form-control" placeholder="Enter Recipe Name" value="{{ Recipe.recipe_name }}" required>
+        </div>
+        <div class="col">
+            <label for="recipe_image" class="form-label">Image :</label>
+            <input name="recipe_image" type="file" class="form-control">
+            {% if Recipe.recipe_image %}
+                <img src="{{ Recipe.recipe_image.url }}" alt="{{ Recipe.recipe_name }}" style="max-width: 100px; margin-top: 10px;">
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="recipe_description" class="form-label">Description :</label>
+        <textarea name="recipe_description" class="form-control" placeholder="Enter Recipe Description" required rows="3">{{ Recipe.recipe_description }}</textarea>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label for="category" class="form-label">Category :</label>
+            <input name="category" type="text" class="form-control" placeholder="Enter Category" value="{{ Recipe.category }}" required>
+        </div>
+        <div class="col">
+            <label for="serve" class="form-label">Serves :</label>
+            <input name="serve" type="text" class="form-control" placeholder="Enter Total Servings" value="{{ Recipe.serve }}" required>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label for="cooktime" class="form-label">Cooktime :</label>
+            <input name="cooktime" type="text" class="form-control" placeholder="Enter Cooking Time" value="{{ Recipe.cooktime }}" required>
+        </div>
+        <div class="col">
+            <label for="taste" class="form-label">Taste :</label>
+            <input name="taste" type="text" class="form-control" placeholder="Enter Taste of the Dish" value="{{ Recipe.taste }}" required>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label for="ingredients" class="form-label">Ingredients :</label>
+            <textarea name="ingredients" class="form-control" rows="3" placeholder="Enter Ingredients" required>{{ Recipe.ingredients }}</textarea>
+        </div>
+        <div class="col">
+            <label for="instruction1" class="form-label">Instruction1 :</label>
+            <textarea name="instruction1" class="form-control" rows="3" placeholder="Enter Instruction 1" required>{{ Recipe.instruction1 }}</textarea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label for="instruction2" class="form-label">Instruction2 :</label>
+            <textarea name="instruction2" class="form-control" rows="3" placeholder="Enter Instruction 2" required>{{ Recipe.instruction2 }}</textarea>
+        </div>
+        <div class="col">
+            <label for="instruction3" class="form-label">Instruction3 :</label>
+            <textarea name="instruction3" class="form-control" rows="3" placeholder="Enter Instruction 3" required>{{ Recipe.instruction3 }}</textarea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label for="calories" class="form-label">Calories :</label>
+            <input name="calories" type="text" class="form-control" placeholder="Enter Calories" value="{{ Recipe.calories }}" required>
+        </div>
+        <div class="col">
+            <label for="carbohydrates" class="form-label">Carbohydrates :</label>
+            <input name="carbohydrates" type="text" class="form-control" placeholder="Enter Carbohydrates" value="{{ Recipe.carbohydrates }}" required>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label for="protein" class="form-label">Protein :</label>
+            <input name="protein" type="text" class="form-control" placeholder="Enter Protein" value="{{ Recipe.protein }}" required>
+        </div>
+        <div class="col">
+            <label for="fats" class="form-label">Fats :</label>
+            <input name="fats" type="text" class="form-control" placeholder="Enter Fats" value="{{ Recipe.fats }}" required>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="allergic_info" class="form-label">Allergic Info :</label>
+        <textarea name="allergic_info" class="form-control" rows="3" placeholder="Enter Allergic Info" required>{{ Recipe.allergic_info }}</textarea>
+    </div>
+
+    <button type="submit" class="update-recipe-btn">Update Recipe</button>
+</form>
+
         <br><br><br>
 
 

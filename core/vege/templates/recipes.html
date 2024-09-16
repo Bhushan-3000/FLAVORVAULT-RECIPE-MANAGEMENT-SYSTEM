@@ -70,6 +70,15 @@
 }
 
 
+textarea{
+  resize: none;
+}
+
+input, textarea{
+  outline: 1px solid #cfcfcf;
+
+}
+
 
 
 </style>
@@ -117,85 +126,227 @@
         </div>
       </nav>
       <br>
-    <!-- <p>Welcome to FlavorVault {{request.user.first_name}}</p>
-    <p>Username : {{request.user}}</p> -->
+      
+      <!-- <p>Hello, {{request.user}}</p> -->
+      <p class="">Hello {{request.user}}, Welcome to FlavorVault {{request.user.first_name}}</p>
+      
+      <h1 class="text-center" style="font-family: 'Montserrat', sans-serif; font-size: 30ox; margin-bottom: 20px; font-weight: 700;">Manage Recipes - Create, View, Update, Delete Recipes</h1>
 
-    <div class="container-md mt-5">
+    <!-- Display Messages -->
+    {% if messages %}
+    <div class="container-fluid w-75">
+      {% for message in messages %}
+          <div class="text-center alert alert-success" role="alert">
+              {{ message }}
+          </div>
+      {% endfor %}
+  </div>
+    {% endif %}
 
-        <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+      <div class="container-md mt-4">
+        
+        <form class="col-9 mx-auto card p-4 shadow-lg" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-        <h2 class="text-center" style="font-weight: 800;">Innovate Recipe</h2>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Recipe Name :</label>
-              <input name="recipe_name" type="text" class="form-control" required>
+        <h2 class="text-center mb-3" style="font-size: 30ox; font-weight: 700;">Add a New Flavor to the Vault</h2>
+            
+        <div class="row mb-3">
+          <div class="col">
+            <label for="exampleInputEmail1" class="form-label">Recipe Name :</label>
+            <input name="recipe_name" type="text" class="form-control" placeholder="Enter Recipe Name" required>          </div>
+          <div class="col">
+            <label for="exampleInputEmail1" class="form-label">Image :</label>
+            <input name="recipe_image" type="file" class="form-control" >          </div>
+        </div>
         
+        
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Description :</label>
+              <textarea name="recipe_description" class="form-control" placeholder="Enter Recipe Description" required rows="3"></textarea>
             </div>
-        
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Recipe Description :</label>
-              <textarea name="recipe_description" class="form-control" required></textarea>
-            </div>
-        
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Recipe Image :</label>
-              <input name="recipe_image" type="file" class="form-control" >
+
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Category :</label>
+                <input name="category" type="text" class="form-control" placeholder="Enter Category" required>
               </div>
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Serves :</label>
+                <input name="serve" type="text" class="form-control" placeholder="Enter Total Servings" required>
+              </div>
+            </div>
+
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Cooktime :</label>
+                <input name="cooktime" type="text" class="form-control" placeholder="Enter Cooking Time" required>
+              </div>
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Taste :</label>
+                <input name="taste" type="text" class="form-control" placeholder="Enter Taste of the Dish" required>
+              </div>
+            </div>
+
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Ingredients :</label>
+                <textarea name="ingredients" type="text" class="form-control" rows="3" placeholder="Enter Ingredients" required></textarea>
+                
+              </div>
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Instruction1 :</label>
+                <textarea name="instruction1" type="text" class="form-control" rows="3" placeholder="Enter Instruction 1" required></textarea>
+              </div>
+            </div>
+            
+            
+            <div class="row mb-3">
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Instruction2 :</label>
+                <textarea name="instruction2" type="text" class="form-control" rows="3" placeholder="Enter Instruction 2" required></textarea>
+  
+              </div>
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Instruction3 :</label>
+                <textarea name="instruction3" type="text" class="form-control" rows="3" placeholder="Enter Instruction 3" required></textarea>
+              </div>
+            </div>
+
+
+            
+          
+            
+            <div class="row mb-3">
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Calories :</label>
+                <input name="calories" type="text" class="form-control" placeholder="Enter Calories" required>
+              </div>
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Carbohydrates :</label>
+                <input name="carbohydrates" type="text" class="form-control" placeholder="Enter Carbohydrates" required>
+              </div>
+            </div>
+
+
+            
+            <div class="row mb-3">
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Protein :</label>
+                <input name="protein" type="text" class="form-control" placeholder="Enter Protein" required>
+              </div>
+              <div class="col">
+                <label for="exampleInputEmail1" class="form-label">Fats :</label>
+                <input name="fats" type="text" class="form-control" placeholder="Enter Fats" required>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Allergic Info :</label>
+              <textarea name="allergic_info" type="text" class="form-control" rows="3" placeholder="Enter Allergic Info" required></textarea>
+            </div>
+
+            
+        
               <button type="submit" class="add-recipe-btn">Add Recipe</button>
-            <!-- <button type="submit" class="btn btn-dark">Add Recipe</button> -->
         
         </form>
         <br><br>
         <hr>
 
         <div class="mt-5">
-            <div class="mx-auto col-6">
-            <form action="">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Search for Recipes :</label>
-                    <input name="search" type="text" class="form-control">
-                </div>
-                <button type="submit" class="add-recipe-btn">Browse</button>
+          <div class="mx-auto col-9">
+          <form action="">
+                <div class=" d-flex justify-content-center mb-3">
+                    <!-- <input name="search" type="text" class="form-control" placeholder="Search for Recipes" width="25px"> -->
+                    <input name="search" type="text" class="form-control" placeholder="Search for Recipes">
+                  </div>
+                  <button type="submit" class="add-recipe-btn">Browse</button>
 
-                <!-- <button type="submit" class="btn btn-dark">Browse</button> -->
+              </div>
             </form>
-            </div>
+          </div>
         </div>
-        
-        <div class="table-responsive">
-        <table class="table text-center mt-5">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Recipe Name</th>
-                <th scope="col">Recipe Description</th>
-                <th scope="col">Recipe Image</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-
-                {% for recipe in Recipe %}
-                
-              <tr>
-                <th scope="row">{{forloop.counter}}</th>
-                <td>{{ recipe.recipe_name }}</td>
-                <td>{{ recipe.recipe_description }}</td>
-                <td>
-                    <img src="/media/{{ recipe.recipe_image }}" style="height: 100px;"></td>
-                    <td>
-                        
-                        <a class="btn btn-success mt-1" href="/update_recipe/{{recipe.id}}/">Update</a>
-                        <a class="btn btn-primary mt-1" href="">view</a>
-                        <a class="btn btn-danger mt-1" href="/delete_recipe/{{recipe.id}}/">Delete</a>
-                    </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+        <br><br>
 
         
     </div>
+
+
+
+
+
+
+
+
+
+    <div class="container-md ">
+      {% for recipe in Recipe %}
+      <!-- {{forloop.counter}} -->
+      <div class="container-md shadow-lg p-4" style="width: 65%;" id="card">
+          
+          <h1 class="text-center" style="font-family: 'Montserrat', sans-serif; font-size: 30ox; margin-bottom: 20px; font-weight: 700;">{{recipe.recipe_name}}</h1>
+          <div class="container-md" style="display: flex; justify-content: center; align-items: center;">
+              <img src="/media/{{recipe.recipe_image}}" alt="" style="margin-bottom: 20px;" width="55%">
+          </div>
+          
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic">{{recipe.category}}</p>
+          <br>
+          
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{recipe.recipe_description}}</p>
+          <br><br>
+  
+          <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic">Serves : {{recipe.serve}}</h2>
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;"></p>
+          <!-- <br> -->
+  
+          <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic">Cook Time : {{recipe.cooktime}}</h2>
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;"></p>
+          <!-- <br> -->
+          
+          <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic">Taste : {{recipe.taste}}</h2>
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;"></p>
+          <br>
+  
+          <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic"> Ingredients</h2>
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{recipe.ingredients}}</p>
+          <br>
+          
+          <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic">Instructions</h2>
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{recipe.instruction1}}</p>
+          <br>
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{recipe.instruction2}}</p>
+          <br>
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{recipe.instruction3}}</p>
+          <br>
+  
+          <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">Nutritional Info</h2>
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">Calories : {{recipe.calories}}</p>
+          
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">Carbohydrates : {{recipe.carbohydrates}}</p>
+          
+          
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">Protein : {{recipe.protein}}</p>
+          
+          
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">Fats : {{recipe.fats}}</p>
+          <br>
+  
+          <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">Allergic Info</h2>
+          <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{recipe.allergic_info}}</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-center">
+              <a class="btn btn-success mt-1" href="/update_recipe/{{recipe.id}}/">Update</a>
+                          <!-- <a class="btn btn-primary mt-1" href="">view</a> -->
+                          <a class="btn btn-danger mt-1" href="/delete_recipe/{{recipe.id}}/">Delete</a>
+          </div>
+      </div>
+      <br><br><br>
+      
+      {% endfor %}
+  </div>
+  
 
     
 </body>

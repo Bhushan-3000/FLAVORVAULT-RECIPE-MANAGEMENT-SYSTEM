@@ -79,17 +79,47 @@ def recipes(request):
         recipe_name = data.get('recipe_name')
         recipe_description = data.get('recipe_description')
         recipe_image = request.FILES.get('recipe_image')
-        
-        print(recipe_name)
-        print(recipe_description)
-        print(recipe_image)
+        category = data.get('category')
+        serve = data.get('serve')
+        cooktime = data.get('cooktime')
+        taste = data.get('taste')
+        ingredients = data.get('ingredients')
+        instruction1 = data.get('instruction1')
+        instruction2 = data.get('instruction2')
+        instruction3 = data.get('instruction3')
+        calories = data.get('calories') 
+        carbohydrates = data.get('carbohydrates') 
+        protein = data.get('protein') 
+        fats = data.get('fats') 
+        allergic_info = data.get('allergic_info') 
+
 
         Recipe.objects.create(
            recipe_name = recipe_name, 
            recipe_description = recipe_description,
            recipe_image = recipe_image,
-        )
-        return redirect("/recipes/")    
+           category = category,
+           serve = serve,
+           cooktime = cooktime,
+           taste = taste,
+           ingredients = ingredients,
+           instruction1 = instruction1,
+           instruction2 = instruction2,
+           instruction3 = instruction3,
+           calories = calories,
+           carbohydrates = carbohydrates,
+           protein = protein,
+           fats = fats,
+           allergic_info = allergic_info
+
+
+        ) 
+        # Add success message
+        messages.info(request, "New Flavor Added to the Vault!")
+        return redirect('/recipes/')
+    
+    # return render(request, 'recipes.html')
+    # return redirect("/recipes/")    
     queryset = Recipe.objects.all()
 
     if request.GET.get('search'):
@@ -97,7 +127,6 @@ def recipes(request):
 
     context = {'Recipe' : queryset}
     return render(request, 'recipes.html', context)
-
 
 
 
@@ -128,6 +157,8 @@ def browseRecipe(request):
 def delete_recipe(request, id):
     queryset = Recipe.objects.get(id= id)
     queryset.delete()
+    # Add success message
+    messages.info(request, "Recipe Removed from the Vault!")
     return redirect('/recipes/')
 
 
@@ -140,13 +171,43 @@ def update_recipe(request, id):
         recipe_name = data.get('recipe_name')
         recipe_description = data.get('recipe_description')
         recipe_image = request.FILES.get('recipe_image')
-        
+        category = data.get('category')
+        serve = data.get('serve')
+        cooktime = data.get('cooktime')
+        taste = data.get('taste')
+        ingredients = data.get('ingredients')
+        instruction1 = data.get('instruction1')
+        instruction2 = data.get('instruction2')
+        instruction3 = data.get('instruction3')
+        calories = data.get('calories') 
+        carbohydrates = data.get('carbohydrates') 
+        protein = data.get('protein') 
+        fats = data.get('fats') 
+        allergic_info = data.get('allergic_info') 
+
+
+
         queryset.recipe_name = recipe_name
         queryset.recipe_description = recipe_description
-        
+        queryset.category = category
+        queryset.serve = serve
+        queryset.cooktime = cooktime
+        queryset.taste = taste
+        queryset.ingredients = ingredients
+        queryset.instruction1 = instruction1
+        queryset.instruction2 = instruction2
+        queryset.instruction3 = instruction3
+        queryset.calories = calories
+        queryset.carbohydrates = carbohydrates
+        queryset.protein = protein
+        queryset.fats = fats
+        queryset.allergic_info = allergic_info
         if recipe_image:
             queryset.recipe_image = recipe_image 
         queryset.save()
+        # Add success message
+        messages.info(request, "New Twist Added to Your Recipe!")
+        
         return redirect("/recipes/")    
 
     context = {'Recipe' : queryset}
@@ -249,7 +310,7 @@ def meal_planner(request):
         'cooking_schedules': cooking_schedules
     })
 
-
+@login_required(login_url="/login/")
 def meal_plan_view(request):
     meal_plans = MealPlan.objects.all()
     return render(request, 'meal_plan.html', {'meal_plans': meal_plans})
@@ -275,7 +336,7 @@ def grocery_list_view(request):
     return render(request, 'grocery_list.html')
 
 
-
+@login_required(login_url="/login/")
 def added_grocery_list(request):
     grocery_items = GroceryItem.objects.all()
     return render(request, 'grocery_list_view.html', {'grocery_items': grocery_items})
@@ -303,17 +364,11 @@ def add_cooking_schedule(request):
     meal_plans = MealPlan.objects.all()
     return render(request, 'cooking_schedule.html', {'meal_plans': meal_plans})
 
+
+@login_required(login_url="/login/")
 def cooking_schedule_view(request):
     cooking_schedules = CookingSchedule.objects.all()  # Filter as needed
     return render(request, 'cooking_schedule_view.html', {'cooking_schedules': cooking_schedules})
 
 
-
-
-
-
-
-# def cooking_schedule_view(request):
-#     cooking_schedules = CookingSchedule.objects.all()
-#     return render(request, 'cooking_schedule.html', {'cooking_schedules': cooking_schedules})
 
