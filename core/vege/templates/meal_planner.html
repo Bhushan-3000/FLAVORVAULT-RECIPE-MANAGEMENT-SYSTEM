@@ -79,11 +79,9 @@ html {
 <section class="meal_planner">
 
 
-    <nav class="navbar .navbar-nav-scroll navbar fixed navbar-expand-lg bg-dark border-bottom border-body w-100 p-2" data-bs-theme="dark">
+  <nav class="navbar .navbar-nav-scroll navbar sticky-top navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">
-        <!-- <img src="ASSETS/icons8-chef-85.png" alt="Bootstrap" width="60" height="54"> -->
-        <span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+      <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
       
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -92,16 +90,14 @@ html {
       <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
         <ul class="navbar-nav nav-underline">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#home" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Home</a>
+            <a class="nav-link disabled" aria-current="page" aria-disabled="true" href="#home" style="color: rgba(255, 255, 255,0.6); font-family: 'Montserrat', sans-serif;">Welcome, {{request.user}}</a>
+            <!-- <p></p> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#Features" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Features</a>
+            <a class="nav-link" href="/dashboard/" style="font-family: 'Montserrat', sans-serif;">Go to Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#About" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Contact_Us/" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Contact Us</a>
+            <a class="nav-link" href="/meal_plan/" style="font-family: 'Montserrat', sans-serif;">View Meal Plans</a> 
           </li>
 
           {% if request.user.is.authenticated %}
@@ -145,6 +141,11 @@ html {
         {% csrf_token %}
         <div class="form-group">
             <label for="recipe_name">Recipe Name:</label>
+            <!-- <select id="meal_plan" name="meal_plan" class="form-control" required>
+              {% for meal_plan in meal_plans %}
+                  <option value="{{ meal_plan.id }}">{{ meal_plan.recipe.recipe_name }}</option>
+              {% endfor %}
+          </select> -->
             <input type="text" class="form-control" id="recipe_name" name="recipe_name" placeholder="Enter recipe name" required>
         </div>
         <div class="form-group">
@@ -169,11 +170,11 @@ html {
     <div class="container-fluid d-flex justify-content-center">
 
         <div class="d-grid gap-2 d-md-block justify-content-center">
-            <a href="{% url 'meal_plan' %}" class="btn btn-secondary">View Meal Plan</a>
-            <a href="{% url 'grocery_list' %}" class="btn btn-success">Add Groceries</a>
-            <a href="{% url 'view_grocery' %}" class="btn btn-secondary">View Grocery List</a>
-            <a href="{% url 'cooking_schedule' %}" class="btn btn-success">Schedule Cooking</a>
-            <a href="{% url 'view_cooking_schedule' %}" class="btn btn-secondary">View Cooking Schedule</a>
+            <!-- <a href="{% url 'meal_plan' %}" class="btn btn-secondary">View Meal Plan</a> -->
+            <a href="{% url 'grocery_list' %}" class="btn btn-success">Manage Shopping List</a>
+            <!-- <a href="{% url 'view_grocery' %}" class="btn btn-secondary">View Grocery List</a> -->
+            <a href="{% url 'cooking_schedule' %}" class="btn btn-success">Manage Cooking Schedule</a>
+            <!-- <a href="{% url 'view_cooking_schedule' %}" class="btn btn-secondary">View Cooking Schedule</a> -->
             
         </div>
     </div>

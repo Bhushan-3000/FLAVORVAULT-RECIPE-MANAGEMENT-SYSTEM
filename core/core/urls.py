@@ -28,6 +28,7 @@ urlpatterns = [
     path('dashboard/', userDashboard, name="userDashboard"),
     path('browse_recipes/', browseRecipe),
     path('recipes/', recipes, name ="recipes"),
+    path('view_recipe/', viewRecipe, name='viewRecipe'),
     path('Contact_Us/', contactUs),
     path('delete_recipe/<id>/',delete_recipe , name ="delete_recipe"),
     path('update_recipe/<id>/',update_recipe , name ="update_recipe"),

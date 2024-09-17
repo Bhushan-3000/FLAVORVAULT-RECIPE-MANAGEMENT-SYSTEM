@@ -130,6 +130,17 @@ def recipes(request):
 
 
 
+@login_required(login_url="/login/")
+def viewRecipe(request):
+    queryset = Recipe.objects.all()
+
+    if request.GET.get('search'):
+        queryset = queryset.filter(recipe_name__icontains=request.GET.get('search'))
+    context = {'recipes': queryset}
+    return render(request, 'view_recipe.html', context)
+
+
+
 
 def browseRecipe(request):
     if 'put' in request.GET:

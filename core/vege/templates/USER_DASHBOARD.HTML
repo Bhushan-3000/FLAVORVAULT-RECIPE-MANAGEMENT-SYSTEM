@@ -88,7 +88,7 @@
   <nav class="d-flex flex-column p-2 bg-dark border-end" data-bs-theme="dark" style="width: 300px; height: 100vh;">
     <h2 class="text-center" style="font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</h2>
     <hr style="color: #fff;">
-
+    
     <ul class="nav flex-column">
       <li class="nav-item">
         <a href="#" class="nav-link active">
@@ -101,7 +101,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="/recipes/" class="nav-link">
           <i class="bi bi-journal icon"></i> My Recipes
         </a>
       </li>
@@ -141,8 +141,8 @@
   <!-- Main Content -->
   <div class="container-fluid p-4" style="flex-grow: 1;">
     <div class="alert alert-success text-center p-1 mx-auto" role="alert">
-      <h2 style="font-weight: 800;">Welcome to FlavorVault Dashboard</h2>
-      <p class="text-dark">Manage your recipes, create meal plans, and more!</p>
+      <h2 style="font-weight: 800;">Hello {{request.user}}! Welcome to the FlavorVault Dashboard</h2>
+      <p class="text-dark">Manage your recipes, Create meal plans, and more!</p>
     </div>
     <br>
 
@@ -153,7 +153,7 @@
         <a href="/recipes/" class="card text-bg-dark">
           <img src="{% static 'ASSETS/CREATE.png' %}" class="card-img" alt="My Recipes Image">
           <div class="card-img-overlay">
-            <h5 class="card-title">Add Recipes</h5>
+            <h5 class="card-title">Manage Recipes</h5>
             <p class="card-text">Create, Update, Delete Your Recipes.</p>
           </div>
         </a>
