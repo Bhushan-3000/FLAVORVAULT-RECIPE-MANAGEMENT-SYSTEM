@@ -51,6 +51,10 @@ def logout_page(request):
 
 
 
+@login_required(login_url="/login/")
+def helpSupport(request):    
+    return render(request,'Help_Support.html')
+
 
 
 def contactUs(request):

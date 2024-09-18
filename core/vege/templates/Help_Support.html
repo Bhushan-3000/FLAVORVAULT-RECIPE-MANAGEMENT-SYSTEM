@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    
+    <style>
+
+body {
+        font-family: 'Montserrat', sans-serif;
+        
+    }
+</style>
+</head>
+<body>
+    {% load static %}
+
+    <nav class="navbar .navbar-nav-scroll navbar sticky-top navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+            <ul class="navbar-nav nav-underline">
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-current="page" aria-disabled="true" href="#home" style="color: rgba(255, 255, 255,0.6); font-family: 'Montserrat', sans-serif;">Welcome, {{request.user}}</a>
+                <!-- <p></p> -->
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/" style="font-family: 'Montserrat', sans-serif;">Go to Dashboard</a>
+              </li>
+  
+            {% if request.user.is.authenticated %}
+  
+  
+            <button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/login/">Login</a></button>
+            
+            {% else %}
+            <button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/logout/">Logout</a></button>
+            {% endif %}
+  
+  
+            <!-- <button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/login/">Login / Sign-Up</a></button> -->
+            <!-- <button type="button" class="btn btn-outline-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Login</button> -->
+            <!-- <button type="button" class="btn btn-dark" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-light" href="#">Sign-Up</a></button> -->
+          </ul>
+        </div>
+        
+        
+      
+      </div>
+    </nav>
+    <br>
+
+  <div class="container-fluid w-75 mt-5">
+    <h2 class="text-center support-header fw-bold">Help & Support</h2>
+    <p class="text-center mb-4">Find answers to common questions or contact our support team for assistance.</p>
+
+    <!-- Accordion for FAQs -->
+    <div class="accordion shadow-lg" id="faqsAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            How do I add a recipe to my collection?
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqsAccordion">
+          <div class="accordion-body">
+            To add a recipe, simply navigate to the "My Recipes" section and click on the "Add Recipe" button. Fill in the required details such as ingredients, steps, and photos, then click "Save."
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Can I share my recipes with others?
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqsAccordion">
+          <div class="accordion-body">
+            Yes, FlavorVault allows you to share recipes with friends and family. Just click on the "Share" button located in the recipe's details page and choose the preferred sharing method.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            How do I create a meal plan?
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqsAccordion">
+          <div class="accordion-body">
+            You can create meal plans by going to the "Meal Planner" section. Select the recipes you want to include, set the days for each meal, and save your plan.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            Is there a way to create a shopping list from my recipes?
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqsAccordion">
+          <div class="accordion-body">
+            Yes, you can generate a shopping list from selected recipes in the "Shopping List" section. The ingredients from your chosen recipes will be automatically added to the list.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFive">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            Can I access my recipes offline?
+          </button>
+        </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqsAccordion">
+          <div class="accordion-body">
+            Currently, FlavorVault is designed for online use, but you can export your recipes as PDF files for offline access.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSix">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+            How do I reset my password?
+          </button>
+        </h2>
+        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqsAccordion">
+          <div class="accordion-body">
+            Go to the "Edit Profile" section, select "Change Password," and follow the prompts to reset your password.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSeven">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+            How do I delete a recipe?
+          </button>
+        </h2>
+        <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqsAccordion">
+          <div class="accordion-body">
+            To delete a recipe, go to "My Recipes," select the recipe you want to delete, and click the "Delete" button.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Support Section -->
+    <div class="mt-5">
+        <h3>Contact Support</h3>
+        <p>If you need further assistance, our support team is here to help. Reach out to us through any of the following methods:</p>
+        <ul style="list-style: none;">
+          <li class="mb-2"><strong><i class="bi bi-envelope-at-fill"></i> Email :</strong> <a href="mailto:support@flavorvault.com">support@flavorvault.com</a></li>
+          <li class="mb-2"><strong><i class="bi bi-telephone-fill"></i> Phone :</strong> +1-800-123-4567 (Available Mon-Fri, 9 AM to 5 PM)</li>
+          <li class="mb-2"><strong><i class="bi bi-headset"></i> Contact Us :</strong> <a href="/Contact_Us/">Reach out to us</a> with any questions or issues, and we'll assist you promptly!</li>
+          </ul>
+      </div>
+    </div>
+    <br><br>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<style>
+
+    #footer-icons i{
+      color: rgba(255, 255, 255, .4);
+    }
+    #footer-icons i:hover{
+      color: white;
+      }
+    </style>
+        <footer class="container-fluid bg-dark text-white mw-auto text-center">
+            
+            <div class="container-md" style="line-height: 1; ">
+                <br>
+            <h5 style="font-family: 'Montserrat', sans-serif; font-weight: 600;" >
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><span style="color: #399918; font-weight: 600;">Flavor<span style="color: white; font-weight: 600;">Vault</span></span>
+                </a>
+            </h5>
+            
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: x-small; line-height: .1;">
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#" style="color: white;">Privacy Policy | Terms & Conditions | Cookies Policy</a>
+                
+                <div class="container-md fs-4" id="footer-icons">
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-instagram-line"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-facebook-fill"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-twitter-x-fill"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-whatsapp-line"></i></a>
+                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#"><i style="cursor: pointer;" class="ri-pinterest-fill"></i></a>
+            </div>
+            </p>
+            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: small; ">
+              <a class="link-offset-2 link-underline link-underline-opacity-0" href="#" style="color: white; ">© All rights reserved 2024 - FlavorVault Pvt. Ltd.</a><br><br>
+              <a class="link-offset-2 link-underline link-underline-opacity-0" style="color: white; " href="#" >
+                <span style="color: #399918; font-weight: 600;">Share a Feedback</span>  |  Call on: 1800X XXXXX</a>
+            </p>
+            <br>
+        </div>
+        </footer>
+</body>
+</html>
+
+
+
