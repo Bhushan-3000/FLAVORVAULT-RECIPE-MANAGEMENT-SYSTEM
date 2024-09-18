@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+      <title>My Recipes</title>
+        <link rel="icon" href="{% static 'ASSETS/icons8-chef-85.png' %}">
+
         <!-- Bootstrap CSS -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <!-- Bootstrap JS and dependencies -->
@@ -86,8 +90,57 @@
     </style>
 </head>
 <body>
-    <div class="container-md ">
-    <div class="container mt-5">
+    <nav class="navbar p-1 .navbar-nav-scroll navbar sticky-top navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark">
+        <div class="container-fluid p-1">
+          <div class=" d-flex justify-content-center align-items-center">
+            <img src="{% static 'ASSETS/icons8-chef-85.png' %}" width="64" height="64" alt="">
+            <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+            <!-- <h2 class="text-center" style="font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</h2> -->
+          </div>
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+            <ul class="navbar-nav nav-underline">
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-current="page" aria-disabled="true" href="#home" style="color: rgba(255, 255, 255,0.6); font-family: 'Montserrat', sans-serif;">Welcome, {{request.user}}</a>
+                <!-- <p></p> -->
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/" style="font-family: 'Montserrat', sans-serif;">Go to Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/recipes/" style="font-family: 'Montserrat', sans-serif;">Manage Recipes</a> 
+              </li>
+{% if request.user.is.authenticated %}
+
+
+<button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/login/">Login</a></button>
+
+{% else %}
+<button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/logout/">Logout</a></button>
+              {% endif %}
+
+              <!-- <button type="button" class="btn btn-outline-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Login</button> -->
+            </ul>
+          </div>
+          
+          <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              
+          </div> -->
+        
+        </div>
+      </nav>
+  
+      
+    
+
+
+
+    <!-- <div class="container-md "> -->
+    <div class="container-md mt-4">
         <h1 class="text-center mb-4" style="font-size: 2.5rem; font-weight: 700;">Recipes</h1>
         <div class="mx-auto col-9">
             <form action="">
@@ -149,7 +202,7 @@
                 </div>
             {% endfor %}
         </div>
-    </div>
+    <!-- </div> -->
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>

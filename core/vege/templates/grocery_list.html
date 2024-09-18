@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+  {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocery List</title>
+    <link rel="icon" href="{% static 'ASSETS/icons8-chef-85.png' %}">
+    
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap JS and dependencies -->
@@ -20,7 +23,7 @@
     
     <style>
 
-html {
+body {
         font-family: 'Montserrat', sans-serif;
         
     }
@@ -80,12 +83,14 @@ html {
 </style>
 </head>
 <body>
-    {% load static %}
 <section class="meal_planner">
-  <nav class="navbar .navbar-nav-scroll navbar sticky-top navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
-      
+  <nav class="navbar p-1 .navbar-nav-scroll navbar sticky-top navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark">
+    <div class="container-fluid p-1">
+      <div class=" d-flex justify-content-center align-items-center">
+        <img src="{% static 'ASSETS/icons8-chef-85.png' %}" width="64" height="64" alt="">
+        <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+        <!-- <h2 class="text-center" style="font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</h2> -->
+      </div>    
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

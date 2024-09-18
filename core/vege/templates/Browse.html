@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
+  {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse Recipes</title>
     <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
     rel="stylesheet"/>
-    <link rel="icon" href="ASSETS/icons8-chef-85.png">
+    <link rel="icon" href="{% static 'ASSETS/icons8-chef-85.png' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -17,7 +19,7 @@
     
     <style>
         
-        html {
+        body {
         font-family: 'Montserrat', sans-serif;
         
     }
@@ -89,47 +91,59 @@
     </style>
 </head>
 <body>
-    {% load static %}
 
-        <nav class="navbar .navbar-nav-scroll navbar fixed navbar-expand-lg bg-dark border-bottom border-body w-100 p-2" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">
-            <!-- <img src="ASSETS/icons8-chef-85.png" alt="Bootstrap" width="60" height="54"> -->
-            <span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+  <nav class="navbar p-1 .navbar-nav-scroll navbar sticky-top navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark">
+    <div class="container-fluid p-1">
+      <div class=" d-flex justify-content-center align-items-center">
+        <img src="{% static 'ASSETS/icons8-chef-85.png' %}" width="64" height="64" alt="">
+        <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+        <!-- <h2 class="text-center" style="font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</h2> -->
+      </div>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+        <ul class="navbar-nav nav-underline">
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-current="page" aria-disabled="true" href="#home" style="color: rgba(255, 255, 255,0.6); font-family: 'Montserrat', sans-serif;">Welcome, {{request.user}}</a>
+            <!-- <p></p> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard/" style="font-family: 'Montserrat', sans-serif;">Go to Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/recipes/" style="font-family: 'Montserrat', sans-serif;">Manage Recipes</a> 
+          </li>
+{% if request.user.is.authenticated %}
+
+
+<button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/login/">Login</a></button>
+
+{% else %}
+<button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/logout/">Logout</a></button>
+          {% endif %}
+
+          <!-- <button type="button" class="btn btn-outline-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Login</button> -->
+        </ul>
+      </div>
+      
+      <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          
-          <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
-            <ul class="navbar-nav nav-underline">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/home/" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/home/" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/home/" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Contact Us</a>
-              </li>
-              <button type="button" class="btn btn-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="/login/">Login / Sign-Up</a></button>
-              <!-- <button type="button" class="btn btn-outline-light" style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Login</button> -->
-              <!-- <button type="button" class="btn btn-dark" style="font-family: 'Montserrat', sans-serif; font-weight: 700;"><a class="link-offset-2 link-underline link-underline-opacity-0 text-light" href="#">Sign-Up</a></button> -->
-            </ul>
-          </div>
-          
-          
-        
-        </div>
-      </nav>
+      </div> -->
+    
+    </div>
+  </nav>
       <br>
-      <form action="">
-        <div class="mb-3">
-            <div class="container-md w-100 d-flex justify-content-center" id="searchbar">
-                <!-- <input type="search" name="put" placeholder="Search Recipes..." /> -->
+      
+
+
+
+      <div class="mx-auto col-9">
+        <form action="">
+              <div class=" d-flex justify-content-center mb-3">
+                        <!-- <input type="search" name="put" placeholder="Search Recipes..." /> -->
                 <!-- <button id="search" type="submit">Search</button> -->
                 <!-- <select class="form-select-md p-3" aria-label="Default select example" style="border-radius: 8px; background-color: #399918; color: white;">
                   <option selected style="background-color: white; color: #000;">Select Category</option>
@@ -139,14 +153,21 @@
                 </select> -->
                 <input name="put" type="search" class="form-control" placeholder="Search Recipes...">
                 <button type="submit" class="add-recipe-btn" id="search">Browse</button>
+      
             </div>
+          </form>
         </div>
-    </form>
+              <br><br>
+
+
+
+      
 <br>
     
-    
-    <div class="container-md ">
+<div class="row">
+
         {% for browse in browse %}
+        <div class="col-md-12">
         <div class="container-md shadow-lg p-4" style="width: 65%;" id="card">
             <h1 class="text-center" style="font-family: 'Montserrat', sans-serif; font-size: 30ox; margin-bottom: 20px; font-weight: 700;">{{browse.recipe_name}}</h1>
             <div class="container-md" style="display: flex; justify-content: center; align-items: center;">
@@ -198,6 +219,8 @@
             <h2 style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: large; line-height: 1.8; font-style: italic;">Allergic Info</h2>
             <p style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: large; line-height: 1.8; font-style: italic;">{{browse.allergic_info}}</p>
         </div>
+        </div>
+      </div>
         <br><br><br>
         {% endfor %}
     </div>

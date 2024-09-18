@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
+    
+    <link rel="icon" href="{% static 'ASSETS/icons8-chef-85.png' %}">
     
     <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
@@ -15,15 +18,74 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
 
+      body {
+              font-family: 'Montserrat', sans-serif;
+              
+          }
+      
+      
+              #submit-btn {
+          font-size: 15px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          display: inline-block;
+          text-align: center;
+          font-weight: bold;
+          padding: 0.7em 2em;
+          border: 3px solid #399918;
+          border-radius: 2px;
+          position: relative;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+          color: #399918;
+          text-decoration: none;
+          transition: 0.3s ease all;
+          z-index: 1;
+      }
+      
+      #submit-btn:before {
+        transition: 0.5s all ease;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        right: 50%;
+        bottom: 0;
+        opacity: 0;
+        content: '';
+        background-color: #399918;
+        z-index: -1;
+      }
+      
+      #submit-btn:hover, #submit-btn:focus {
+        color: white;
+      }
+      
+      #submit-btn:hover:before, #submit-btn:focus:before {
+        transition: 0.5s all ease;
+        left: 0;
+        right: 0;
+        opacity: 1;
+      }
+      
+      #submit-btn:active {
+        transform: scale(0.9);
+      }
+      
+          </style>
+      
 </head>
 <body>
-  {% load static %}
 
-  <nav class="navbar .navbar-nav-scroll navbar sticky-top navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+  <nav class="navbar p-1 .navbar-nav-scroll navbar sticky-top navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark">
+    <div class="container-fluid p-1">
+      <div class=" d-flex justify-content-center align-items-center">
+        <img src="{% static 'ASSETS/icons8-chef-85.png' %}" width="64" height="64" alt="">
+        <a class="navbar-brand fs-3" href="#" style="font-family: 'Montserrat', sans-serif; font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</a>
+        <!-- <h2 class="text-center" style="font-weight: 800;"><span style="font-weight: 800; color: #399918;">Flavor</span>Vault</h2> -->
+      </div>    
       
+    
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -59,7 +121,7 @@
   <br>
 
 
-<div class="container-md w-60 shadow-lg col-8  p-3" style="font-family: 'Montserrat', sans-serif; font-weight: bolder;">
+<div class="container-md w-60 mt-4 shadow-lg col-8  p-3" style="font-family: 'Montserrat', sans-serif; font-weight: bolder;">
     <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bold;" class="text-center">Connect With Us</h1>   
     {% if messages %}
     <div class="alert alert-success" role="alert">
