@@ -55,6 +55,10 @@ urlpatterns = [
     path('ecom/remove_from_cart/<int:ingredient_id>/', remove_from_cart, name='remove_from_cart'),
     path('ecom/checkout/', checkout, name='checkout'),
     path('ecom/order_confirmation/<int:order_id>/', order_confirmation, name='order_confirmation'),
+    path('meal_plan/delete/<int:id>/', delete_meal_plan, name='delete_meal_plan'),
+    path('grocery_item/delete/<int:id>/', delete_grocery_item, name='delete_grocery_item'),
+    path('cooking_schedule/delete/<int:id>/', delete_cooking_schedule, name='delete_cooking_schedule'),
+
 
 
 ]

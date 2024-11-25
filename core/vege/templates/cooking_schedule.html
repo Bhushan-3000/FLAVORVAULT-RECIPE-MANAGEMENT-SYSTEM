@@ -165,13 +165,17 @@ body {
 
     <hr>
     
-<div class="container-fluid d-flex justify-content-center">
-    <div class="d-grid gap-2 d-md-block justify-content-center">
-    <a href="{% url 'meal_plan' %}" class="btn btn-secondary">View Meal Plan</a>
-    <a href="{% url 'view_grocery' %}" class="btn btn-secondary">View Grocery List</a>
-    <a href="{% url 'view_cooking_schedule' %}" class="btn btn-secondary">View Cooking Schedule</a>
-    </div>
-</div>
+    <div class="container-fluid d-flex justify-content-center">
+
+      <div class="d-grid gap-2 d-md-block justify-content-center">
+          <!-- <a href="{% url 'meal_plan' %}" class="btn btn-secondary">View Meal Plan</a> -->
+          <a href="{% url 'meal_planner' %}" class="btn btn-success">Manage Meal Plan</a>
+          <!-- <a href="{% url 'view_grocery' %}" class="btn btn-secondary">View Grocery List</a> -->
+          <a href="{% url 'grocery_list' %}" class="btn btn-success">Manage Grocery List</a>
+          <!-- <a href="{% url 'view_cooking_schedule' %}" class="btn btn-secondary">View Cooking Schedule</a> -->
+          
+      </div>
+  </div>
 </div>
 <br><br><br><br>
 </section>

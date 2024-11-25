@@ -457,6 +457,41 @@ def cooking_schedule_view(request):
 
 
 
+
+# Delete Meal Plan
+@login_required(login_url="/login/")
+def delete_meal_plan(request, id):
+    meal_plan = get_object_or_404(MealPlanner, id=id, user=request.user)
+    meal_plan.delete()
+    messages.success(request, "Meal Plan deleted successfully!")
+    return redirect('meal_plan')
+
+# Delete Grocery Item
+@login_required(login_url="/login/")
+def delete_grocery_item(request, id):
+    grocery_item = get_object_or_404(GroceryItems, id=id)
+    grocery_item.delete()
+    messages.success(request, "Grocery Item deleted successfully!")
+    return redirect('view_grocery')
+
+# Delete Cooking Schedule
+@login_required(login_url="/login/")
+def delete_cooking_schedule(request, id):
+    cooking_schedule = get_object_or_404(CookingSchedules, id=id, user=request.user)
+    cooking_schedule.delete()
+    messages.success(request, "Cooking Schedule deleted successfully!")
+    return redirect('view_cooking_schedule')
+
+
+
+
+
+
+
+
+
+
+
 @login_required
 def ecom_home(request):
     query = request.GET.get('q', '')

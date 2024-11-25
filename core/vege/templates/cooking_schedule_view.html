@@ -85,19 +85,28 @@ body {
   <div class="container mt-4">
     <h1 class="mb-4 text-center fw-bold">Cooking Schedule</h1>
 
+    {% if messages %}
+    <div class="alert alert-info">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+
     <a href="{% url 'meal_planner' %}" class="btn btn-secondary mb-3">Back to Planner</a>
 
     <ul class="list-group">
-        {% for schedule in cooking_schedules %}
-            <li class="list-group-item">
-                <strong>{{ schedule.meal_plan.day }}:</strong> 
-                {{ schedule.meal_plan.recipe.recipe_name }} 
-                - Scheduled at {{ schedule.scheduled_time|date:"l, F j, Y H:i" }}
-            </li>
-        {% empty %}
-            <li class="list-group-item">No cooking schedules available.</li>
-        {% endfor %}
-    </ul>
+      {% for schedule in cooking_schedules %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ schedule.meal_plan.day }}: {{ schedule.meal_plan.recipe.recipe_name }} - {{ schedule.scheduled_time|date:"l, F j, Y H:i" }}
+              <a href="{% url 'delete_cooking_schedule' schedule.id %}" class="btn btn-danger btn-sm">Delete <i class='bx bxs-trash' ></i></a>
+          </li>
+      {% empty %}
+          <li class="list-group-item">No cooking schedules available.</li>
+      {% endfor %}
+  </ul>
+  
 </div>
 <br>
 

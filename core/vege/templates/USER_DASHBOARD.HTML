@@ -119,20 +119,27 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="/view_grocery/" class="nav-link">
-          <i class="bi bi-cart icon"></i> Shopping List
-        </a>
-      </li>
-      <li class="nav-item">
         <a href="/meal_plan/" class="nav-link">
           <i class="bi bi-calendar-day icon"></i> Meal Plan
         </a>
       </li>
       <li class="nav-item">
+        <a href="/view_grocery/" class="nav-link">
+          <i class="bi bi-cart icon"></i> Shopping List
+        </a>
+      </li>
+      
+      <li class="nav-item">
         <a href="/view_cooking_schedule/" class="nav-link">
           <i class="bi bi-clock-history icon"></i> Cooking Schedule
         </a>
       </li>
+      <li class="nav-item">
+        <a href="/view_grocery/" class="nav-link">
+          <i class="bi bi-cart icon"></i> Ingredients Shop
+        </a>
+      </li>
+      
       <li class="nav-item">
         <a href="/help_support/" class="nav-link">
           <i class="bi bi-question-circle icon"></i> Help & Support
@@ -149,7 +156,7 @@
   <!-- Main Content -->
   <div class="container-fluid p-4" style="flex-grow: 1;">
     <div class="alert alert-success text-center p-1 mx-auto" role="alert">
-      <h2 style="font-weight: 800;">Hello {{request.user}}! Welcome to the FlavorVault Dashboard</h2>
+      <h2 style="font-weight: 800;">Hello {{request.user.first_name}}! Welcome to the FlavorVault Dashboard</h2>
       <p class="text-dark">Manage your recipes, Create meal plans, and more!</p>
     </div>
     <br>
@@ -200,13 +207,13 @@
         </a>
       </div>
 
-      <!-- Card 5: Favourite Recipes -->
+      <!-- Card 5: Ecommerce -->
       <div class="col-md-4 mb-4 d-flex justify-content-center">
         <a href="#" class="card text-bg-dark">
-          <img src="{% static 'ASSETS/FAVOURITE.png' %}" class="card-img" alt="Favourite Recipes Image">
+          <img src="{% static 'ASSETS/ecom.jpg' %}" class="card-img" alt="Favourite Recipes Image">
           <div class="card-img-overlay">
-            <h5 class="card-title">Favourite Recipes</h5>
-            <p class="card-text">View your saved or favourite recipes.</p>
+            <h5 class="card-title">Ingredient Shop</h5>
+            <p class="card-text">Delivering your favourite ingredients quickly & easily at your doorstep.</p>
           </div>
         </a>
       </div>
