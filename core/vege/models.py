@@ -2,6 +2,24 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(upload_to='profile_pics/', default='default.jpg')
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
+
+
+
+
+
+
+
+
+
 class Recipe(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     recipe_name = models.CharField(max_length=100)
@@ -117,3 +135,46 @@ class CookingSchedule(models.Model):
         return f"{self.meal_plan} at {self.scheduled_time}"
     
 
+
+
+
+
+
+
+
+class Ingredient(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    stock = models.IntegerField()
+    description = models.TextField()
+    image = models.ImageField(upload_to='ingredient_images/', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ingredients = models.ManyToManyField(Ingredient, through='CartItem')
+
+    def get_total(self):
+        # Calculate the total amount by summing up the totals of all CartItems
+        return sum(item.get_total() for item in self.cartitem_set.all())
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def get_total(self):
+        return self.quantity * self.ingredient.price
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    address = models.CharField(max_length=255)
+    order_date = models.DateTimeField(auto_now_add=True)
+    is_paid = models.BooleanField(default=False)
+    is_cash_on_delivery = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"Order #{self.id} by {self.user.username}"

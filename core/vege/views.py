@@ -1,6 +1,7 @@
 from urllib import request
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
+from django.db.models import Q
 from datetime import datetime
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -9,6 +10,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.dateparse import parse_datetime
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 
 
@@ -48,6 +51,68 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     return redirect('/login/')
+
+
+
+
+
+
+@login_required
+def profile_view(request):
+    profile, created = Profile.objects.get_or_create(user=request.user)
+    return render(request, 'profile.html', {'user': request.user})
+
+@login_required
+def edit_profile_view(request):
+    profile, created = Profile.objects.get_or_create(user=request.user)
+    
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        
+        profile_picture = request.FILES.get('profile_picture')
+        
+        user = request.user
+        user.username = username
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        
+        if profile_picture:
+            profile.profile_picture = profile_picture
+        
+        user.save()
+        profile.save()
+        messages.success(request, 'Your profile has been updated successfully!')
+        return redirect('profile')
+
+    return render(request, 'edit_profile.html', {'user': request.user})
+
+@login_required
+def change_password_view(request):
+    if request.method == 'POST':
+        password_form = PasswordChangeForm(request.user, request.POST)
+        if password_form.is_valid():
+            user = password_form.save()
+            update_session_auth_hash(request, user)  # Keep the user logged in
+            messages.success(request, 'Your password has been updated successfully!')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        password_form = PasswordChangeForm(request.user)
+
+    return render(request, 'change_password.html', {'password_form': password_form})
+
+
+
+
+
+
+
+
 
 
 
@@ -387,3 +452,103 @@ def cooking_schedule_view(request):
 
 
 
+
+
+
+
+
+@login_required
+def ecom_home(request):
+    query = request.GET.get('q', '')
+    if query:
+        ingredients = Ingredient.objects.filter(Q(name__icontains=query) | Q(description__icontains=query), stock__gt=0)
+    else:
+        ingredients = Ingredient.objects.filter(stock__gt=0)
+    return render(request, 'ecom_home.html', {'ingredients': ingredients, 'query': query})
+
+@login_required
+def add_to_cart(request, ingredient_id):
+    ingredient = get_object_or_404(Ingredient, id=ingredient_id)
+    cart, created = Cart.objects.get_or_create(user=request.user)
+
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, ingredient=ingredient)
+    if not created:
+        cart_item.quantity += 1
+    cart_item.save()
+
+    # Add a success message
+    messages.success(request, f"{ingredient.name} has been added to your cart!")
+
+    # Redirect back to the referring page or home
+    return redirect(request.META.get('HTTP_REFERER', 'ecom_home'))
+
+@login_required
+def cart_view(request):
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    return render(request, 'cart.html', {'cart': cart})
+
+@login_required
+def increase_quantity(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id)
+    cart_item.quantity += 1
+    cart_item.save()
+    return redirect('cart_view')
+
+@login_required
+def decrease_quantity(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id)
+    
+    if cart_item.quantity > 1:
+        cart_item.quantity -= 1
+        cart_item.save()
+    else:
+        cart_item.delete()
+
+    return redirect('cart_view')
+
+@login_required
+def remove_from_cart(request, ingredient_id):
+    cart = Cart.objects.get(user=request.user)
+    ingredient = get_object_or_404(Ingredient, id=ingredient_id)
+
+    # Find the cart item to remove
+    cart_item = CartItem.objects.filter(cart=cart, ingredient=ingredient).first()
+    
+    if cart_item:
+        cart_item.delete()  # Remove the item from the cart
+    
+    return redirect('cart_view')
+
+@login_required
+def checkout(request):
+    cart = Cart.objects.get(user=request.user)
+    if request.method == 'POST':
+        address = request.POST.get('address')
+        payment_method = request.POST.get('payment_method')
+
+        order = Order.objects.create(
+            user=request.user,
+            cart=cart,
+            address=address,
+            is_cash_on_delivery=True if payment_method == 'COD' else False
+        )
+
+        # Handle cash on delivery only for now
+        if payment_method == 'ONLINE':
+            return render(request, 'payment_coming_soon.html')
+
+        # Empty the cart after ordering
+        cart.cartitem_set.all().delete()
+
+        return redirect('order_confirmation', order_id=order.id)
+    
+    return render(request, 'checkout.html', {'cart': cart})
+
+@login_required
+def order_confirmation(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    
+    # Debugging print statement to check if cart total is working
+    # print("Total amount for order:", order.cart.get_total())  # This should print in the console
+
+    return render(request, 'order_confirmation.html', {'order': order})

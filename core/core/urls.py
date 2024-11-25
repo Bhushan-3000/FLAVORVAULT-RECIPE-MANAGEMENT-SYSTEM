@@ -26,6 +26,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('home/', home),
     path('dashboard/', userDashboard, name="userDashboard"),
+    path('profile/', profile_view, name='profile'),
+    path('profile/edit/', edit_profile_view, name='edit_profile'),
+    path('change-password/', change_password_view, name='change_password'),
     path('browse_recipes/', browseRecipe),
     path('recipes/', recipes, name ="recipes"),
     path('view_recipe/', viewRecipe, name='viewRecipe'),
@@ -44,6 +47,16 @@ urlpatterns = [
     path('view_grocery/', added_grocery_list, name='view_grocery'),
     path('cooking_schedule/', add_cooking_schedule, name='cooking_schedule'),
     path('view_cooking_schedule/', cooking_schedule_view, name='view_cooking_schedule'),
+    path('ecom/', ecom_home, name='ecom_home'),
+    path('ecom/add_to_cart/<int:ingredient_id>/', add_to_cart, name='add_to_cart'),
+    path('ecom/cart/', cart_view, name='cart_view'),  # Ensure this line exists
+    path('ecom/increase_quantity/<int:item_id>/', increase_quantity, name='increase_quantity'),
+    path('ecom/decrease_quantity/<int:item_id>/', decrease_quantity, name='decrease_quantity'),
+    path('ecom/remove_from_cart/<int:ingredient_id>/', remove_from_cart, name='remove_from_cart'),
+    path('ecom/checkout/', checkout, name='checkout'),
+    path('ecom/order_confirmation/<int:order_id>/', order_confirmation, name='order_confirmation'),
+
+
 ]
 
 if settings.DEBUG:
