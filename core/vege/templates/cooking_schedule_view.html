@@ -89,7 +89,11 @@ body {
 
     <ul class="list-group">
         {% for schedule in cooking_schedules %}
-            <li class="list-group-item">{{ schedule.meal_plan }} at {{ schedule.scheduled_time }}</li>
+            <li class="list-group-item">
+                <strong>{{ schedule.meal_plan.day }}:</strong> 
+                {{ schedule.meal_plan.recipe.recipe_name }} 
+                - Scheduled at {{ schedule.scheduled_time|date:"l, F j, Y H:i" }}
+            </li>
         {% empty %}
             <li class="list-group-item">No cooking schedules available.</li>
         {% endfor %}

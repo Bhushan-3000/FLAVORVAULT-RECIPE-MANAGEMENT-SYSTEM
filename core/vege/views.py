@@ -368,8 +368,10 @@ def meal_planner(request):
             # Create or get existing Recipe
             recipe, created = Recipe.objects.get_or_create(recipe_name=recipe_name)
 
-            # Create or get existing MealPlan
-            meal_plan, created = MealPlan.objects.get_or_create(day=day, recipe=recipe)
+            # Create or get existing MealPlan for the logged-in user
+            meal_plan, created = MealPlanner.objects.get_or_create(
+                user=request.user, day=day, recipe=recipe
+            )
 
             if created:
                 messages.success(request, f'Recipe "{recipe_name}" added to "{day}" successfully!')
@@ -378,47 +380,46 @@ def meal_planner(request):
 
             # Redirect to avoid re-posting on refresh
             return redirect('meal_planner')
-    
-    # Fetch all meal plans, grocery items, and cooking schedules to display
-    meal_plans = MealPlan.objects.all()
-    grocery_items = GroceryItem.objects.all()
-    cooking_schedules = CookingSchedule.objects.all()
 
-    return render(request, 'meal_planner.html', {
-        'meal_plans': meal_plans,
-        'grocery_items': grocery_items,
-        'cooking_schedules': cooking_schedules
-    })
+    # Fetch meal plans for the logged-in user
+    meal_plans = MealPlanner.objects.filter(user=request.user)
+    return render(request, 'meal_planner.html', {'meal_plans': meal_plans})
 
 @login_required(login_url="/login/")
 def meal_plan_view(request):
-    meal_plans = MealPlan.objects.all()
+    # Fetch meal plans only for the logged-in user
+    meal_plans = MealPlanner.objects.filter(user=request.user)
     return render(request, 'meal_plan.html', {'meal_plans': meal_plans})
-
 
 
 
 @login_required(login_url="/login/")
 def grocery_list_view(request):
     if request.method == 'POST':
-        Item_name = request.POST.get('Item_name')
-        Quantity = request.POST.get('Quantity')
+        item_name = request.POST.get('Item_name')  # Fixing capitalization to snake_case
+        quantity = request.POST.get('Quantity')
 
-        GroceryItem.objects.create(
-            Item_name=Item_name,
-            Quantity=Quantity
+        if item_name and quantity:
+            # Create a grocery item for the logged-in user
+            GroceryItems.objects.create(
+                user=request.user,
+                item_name=item_name,
+                quantity=quantity
             )
-        
-        messages.info(request, "Grocery Item Added Successfully!")
-        
-        return redirect('grocery_list')
-    
-    return render(request, 'grocery_list.html')
+            messages.success(request, "Grocery item added successfully!")
+        else:
+            messages.error(request, "Please provide valid item details.")
 
+        return redirect('grocery_list')
+
+    # Fetch grocery items for the current user
+    grocery_items = GroceryItems.objects.filter(user=request.user)
+    return render(request, 'grocery_list.html', {'grocery_items': grocery_items})
 
 @login_required(login_url="/login/")
 def added_grocery_list(request):
-    grocery_items = GroceryItem.objects.all()
+    # Fetch only grocery items for the logged-in user
+    grocery_items = GroceryItems.objects.filter(user=request.user)
     return render(request, 'grocery_list_view.html', {'grocery_items': grocery_items})
 
 
@@ -430,28 +431,27 @@ def add_cooking_schedule(request):
         scheduled_time = request.POST.get('scheduled_time')
         
         if meal_plan_id and scheduled_time:
-            meal_plan = MealPlan.objects.get(id=meal_plan_id)
+            meal_plan = MealPlanner.objects.get(id=meal_plan_id)
             scheduled_time = parse_datetime(scheduled_time)
             
-            CookingSchedule.objects.create(
+            # Create a cooking schedule for the logged-in user
+            CookingSchedules.objects.create(
+                user=request.user,  # Associate with logged-in user
                 meal_plan=meal_plan,
                 scheduled_time=scheduled_time
             )
-            messages.info(request, "Scheduled Successfully!")
+            messages.info(request, "Scheduled successfully!")
 
             return redirect('cooking_schedule')
     
-    meal_plans = MealPlan.objects.all()
+    meal_plans = MealPlanner.objects.filter(user=request.user)  # Filter meal plans for the logged-in user
     return render(request, 'cooking_schedule.html', {'meal_plans': meal_plans})
-
 
 @login_required(login_url="/login/")
 def cooking_schedule_view(request):
-    cooking_schedules = CookingSchedule.objects.all()  # Filter as needed
+    # Fetch only cooking schedules for the logged-in user
+    cooking_schedules = CookingSchedules.objects.filter(user=request.user)
     return render(request, 'cooking_schedule_view.html', {'cooking_schedules': cooking_schedules})
-
-
-
 
 
 

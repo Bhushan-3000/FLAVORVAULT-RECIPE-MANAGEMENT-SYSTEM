@@ -7,23 +7,24 @@ admin.site.register(Recipe),
 admin.site.register(BrowseRecipe),
 admin.site.register(Contact),
 admin.site.register(Feedback),
-@admin.register(MealPlan)
+@admin.register(MealPlanner)
 class MealPlanAdmin(admin.ModelAdmin):
     list_display = ('day', 'recipe')
     search_fields = ('day', 'recipe__recipe_name')
     list_filter = ('day', 'recipe')
 
-@admin.register(GroceryItem)
+@admin.register(GroceryItems)
 class GroceryItemAdmin(admin.ModelAdmin):
-    list_display = ('Item_name', 'Quantity')
-    search_fields = ('Item_name',)
+    list_display = ('user', 'item_name', 'quantity')
+    list_filter = ('user',)
+    search_fields = ('item_name', 'user__username')
+    readonly_fields = ('user',)  # Optional: Make 'user' read-only
 
-@admin.register(CookingSchedule)
+@admin.register(CookingSchedules)
 class CookingScheduleAdmin(admin.ModelAdmin):
-    list_display = ('meal_plan', 'scheduled_time')
-    search_fields = ('meal_plan__day',)
-    list_filter = ('scheduled_time',)
-
+    list_display = ('user', 'meal_plan', 'scheduled_time')  # Display the user, meal plan, and scheduled time
+    search_fields = ('meal_plan__day', 'meal_plan__recipe__recipe_name', 'user__username')  # Search by day, recipe, and user
+    list_filter = ('user', 'scheduled_time')  # Filter by user and scheduled time
 
 # Admin for Ingredient model
 class IngredientAdmin(admin.ModelAdmin): 

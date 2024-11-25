@@ -120,12 +120,47 @@ class MealPlan(models.Model):
     def __str__(self):
         return f"{self.day}: {self.recipe.recipe_name}"
 
+
+# new model mealplan 
+
+class MealPlanner(models.Model):
+    DAY_CHOICES = [
+        ('Monday', 'Monday'),
+        ('Tuesday', 'Tuesday'),
+        ('Wednesday', 'Wednesday'),
+        ('Thursday', 'Thursday'),
+        ('Friday', 'Friday'),
+        ('Saturday', 'Saturday'),
+        ('Sunday', 'Sunday'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Associate with a user
+    day = models.CharField(max_length=9, choices=DAY_CHOICES)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.day}: {self.recipe.recipe_name}"
+
+
+
+
 class GroceryItem(models.Model):
     Item_name = models.CharField(max_length=255)
     Quantity = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.Quantity} of {self.Item_name}"
+
+
+
+# new grocery list 
+class GroceryItems(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Associate each item with a user
+    item_name = models.CharField(max_length=255)  # Follow Python naming conventions (snake_case)
+    quantity = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.quantity} of {self.item_name}"
 
 class CookingSchedule(models.Model):
     meal_plan = models.OneToOneField(MealPlan, on_delete=models.CASCADE)
@@ -136,7 +171,15 @@ class CookingSchedule(models.Model):
     
 
 
+# new cooking schedule 
 
+class CookingSchedules(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Associate schedule with a user
+    meal_plan = models.ForeignKey(MealPlanner, on_delete=models.CASCADE, null=True)  # Link to the specific meal plan
+    scheduled_time = models.DateTimeField()  # The time when the recipe will be cooked
+
+    def __str__(self):
+        return f"{self.meal_plan.recipe.recipe_name} scheduled for {self.scheduled_time} by {self.user.username}"
 
 
 
