@@ -101,7 +101,7 @@ input, textarea{
           <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
             <ul class="navbar-nav nav-underline">
               <li class="nav-item">
-                <a class="nav-link disabled" aria-current="page" aria-disabled="true" href="#home" style="color: rgba(255, 255, 255,0.6); font-family: 'Montserrat', sans-serif;">Welcome, {{request.user}}</a>
+                <a class="nav-link disabled" aria-current="page" aria-disabled="true" href="#home" style="color: rgba(255, 255, 255,0.6); font-family: 'Montserrat', sans-serif;">Welcome, {{request.user.first_name}}</a>
                 <!-- <p></p> -->
               </li>
               <li class="nav-item">
@@ -132,7 +132,7 @@ input, textarea{
       <br>
       
       
-      <!-- <p class="">Hello {{request.user}}, Welcome to FlavorVault {{request.user.first_name}}</p> -->
+      <!-- <p class="">Hello {{request.user.first_name}}, Welcome to FlavorVault {{request.user.first_name}}</p> -->
       
       <h1 class="text-center" style="font-family: 'Montserrat', sans-serif; font-size: 30ox; margin-bottom: 20px; font-weight: 700;">Manage Recipes - Create, View, Update, Delete Recipes</h1>
 
